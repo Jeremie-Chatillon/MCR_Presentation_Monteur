@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="iso-8859-15" standalone="no"?>
+<classDiagram>
+  <diagramElements defaultViewEntities="ALL" defaultViewEnum="true" defaultViewMethods="TYPE_AND_NAME" defaultVisibleTypes="true" informations="" name="UML-MCR">
+    <inheritance id="22642">
+      <child>22640</child>
+      <parent>22639</parent>
+    </inheritance>
+    <inheritance id="22643">
+      <child>22641</child>
+      <parent>22639</parent>
+    </inheritance>
+    <association aggregation="NONE" direction="FIRST_TO_SECOND" id="22886" name="construit">
+      <role componentId="22639" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>1</min>
+          <max>1</max>
+        </multiplicity>
+      </role>
+      <role componentId="22638" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>1</min>
+          <max>1</max>
+        </multiplicity>
+      </role>
+    </association>
+    <association aggregation="NONE" direction="FIRST_TO_SECOND" id="22911" name="possède">
+      <role componentId="22906" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>0</min>
+          <max>2147483647</max>
+        </multiplicity>
+      </role>
+      <role componentId="22639" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>1</min>
+          <max>1</max>
+        </multiplicity>
+      </role>
+    </association>
+    <entity entityType="CLASS" id="22638" isAbstract="false" name="VaisseauSpatial" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="propulseurs" type="LinkedList&lt;String&gt;" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="canons" type="LinkedList&lt;String&gt;" visibility="PRIVATE"/>
+      <method isAbstract="false" isStatic="false" name="addCanons" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="canons" type="LinkedList&lt;String&gt;"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="addPropulseurs" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="propulseurs" type="LinkedList&lt;String&gt;"/>
+      </method>
+    </entity>
+    <entity entityType="CLASS" id="22639" isAbstract="true" name="VaisseauBuilder" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="buildPropulseurs" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="buildCanons" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="getVaisseauSpatial" returnType="VaiseauSpatial" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="22640" isAbstract="false" name="VaisseauDeCombatBuilder" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="buildPropulseurs" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="buildCanons" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="22641" isAbstract="false" name="VaisseauDeTransportBuilder" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="buildPropulseurs" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="22906" isAbstract="false" name="VaisseauSpatialDirector" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="false" name="setVaisseauBuilder" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="vaisseauBuilder" type="VaisseauBuilder"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="constructVaisseau" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+  </diagramElements>
+  <umlView grid="10" name="Main view" open="true">
+    <relationView color="-12566464" relationId="22911">
+      <line>
+        <point>
+          <x>371</x>
+          <y>191</y>
+        </point>
+        <point>
+          <x>481</x>
+          <y>191</y>
+        </point>
+      </line>
+      <labelAssociation>
+        <x>402</x>
+        <y>193</y>
+        <w>53</w>
+        <h>17</h>
+      </labelAssociation>
+      <roleAssociation>
+        <x>375</x>
+        <y>195</y>
+        <w>0</w>
+        <h>17</h>
+      </roleAssociation>
+      <roleAssociation>
+        <x>445</x>
+        <y>195</y>
+        <w>0</w>
+        <h>17</h>
+      </roleAssociation>
+      <multipliciteAssociation>
+        <x>375</x>
+        <y>169</y>
+        <w>21</w>
+        <h>17</h>
+      </multipliciteAssociation>
+      <multipliciteAssociation>
+        <x>467</x>
+        <y>169</y>
+        <w>8</w>
+        <h>17</h>
+      </multipliciteAssociation>
+    </relationView>
+    <relationView color="-12566464" relationId="22886">
+      <line>
+        <point>
+          <x>721</x>
+          <y>171</y>
+        </point>
+        <point>
+          <x>851</x>
+          <y>171</y>
+        </point>
+      </line>
+      <labelAssociation>
+        <x>753</x>
+        <y>178</y>
+        <w>57</w>
+        <h>17</h>
+      </labelAssociation>
+      <roleAssociation>
+        <x>725</x>
+        <y>175</y>
+        <w>0</w>
+        <h>17</h>
+      </roleAssociation>
+      <roleAssociation>
+        <x>815</x>
+        <y>175</y>
+        <w>0</w>
+        <h>17</h>
+      </roleAssociation>
+      <multipliciteAssociation>
+        <x>725</x>
+        <y>149</y>
+        <w>8</w>
+        <h>17</h>
+      </multipliciteAssociation>
+      <multipliciteAssociation>
+        <x>837</x>
+        <y>149</y>
+        <w>8</w>
+        <h>17</h>
+      </multipliciteAssociation>
+    </relationView>
+    <relationView color="-12566464" relationId="22643">
+      <line>
+        <point>
+          <x>701</x>
+          <y>311</y>
+        </point>
+        <point>
+          <x>701</x>
+          <y>281</y>
+        </point>
+        <point>
+          <x>601</x>
+          <y>281</y>
+        </point>
+        <point>
+          <x>601</x>
+          <y>241</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="22642">
+      <line>
+        <point>
+          <x>461</x>
+          <y>311</y>
+        </point>
+        <point>
+          <x>461</x>
+          <y>281</y>
+        </point>
+        <point>
+          <x>601</x>
+          <y>281</y>
+        </point>
+        <point>
+          <x>601</x>
+          <y>241</y>
+        </point>
+      </line>
+    </relationView>
+    <componentView color="-2079" componentID="22906" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>0</x>
+        <y>150</y>
+        <w>370</w>
+        <h>85</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="22641" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>610</x>
+        <y>310</y>
+        <w>220</w>
+        <h>70</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="22640" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>370</x>
+        <y>310</y>
+        <w>200</w>
+        <h>85</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="22639" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>480</x>
+        <y>140</y>
+        <w>240</w>
+        <h>100</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="22638" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>850</x>
+        <y>140</y>
+        <w>330</w>
+        <h>115</h>
+      </geometry>
+    </componentView>
+  </umlView>
+</classDiagram>

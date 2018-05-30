@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Controller">
+	<top>
+		<MenuBar style="-fx-background-color: #cdcdcd; -fx-border-color: #ababab;" BorderPane.alignment="CENTER">
+			<menus>
+				<Menu mnemonicParsing="false" text="File">
+					<items>
+						<MenuItem mnemonicParsing="false" text="Close" />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="Edit">
+					<items>
+						<MenuItem mnemonicParsing="false" text="Delete" />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="Help">
+					<items>
+						<MenuItem mnemonicParsing="false" text="About" />
+					</items>
+				</Menu>
+			</menus>
+		</MenuBar>
+	</top>
+	<left>
+		<ToolBar orientation="VERTICAL" prefWidth="100.0" style="-fx-background-color: #cdcdcd;" BorderPane.alignment="CENTER">
+			<items>
+				<ImageView fx:id="sauce" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleSauce" pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@../../ressources/sauce.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="lettuce" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleLettuce" pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@../../ressources/lettuce.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="ognon" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleOgnon" pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@../../ressources/ognon.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="pickle" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handlePickle" pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@../../ressources/pickle.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="cheese" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleCheese" pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@../../ressources/cheese.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="tomatoe" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleTomatoe" pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@../../ressources/tomatoe.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="fish" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleFish" pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@../../ressources/fish.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="chicken" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleChicken" pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@../../ressources/chicken.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="beef" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleBeef" pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@../../ressources/beef.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="breadTop" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleBread" pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@../../ressources/breadTop.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="breadBottom" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleBread" pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@../../ressources/breadBottom.png" />
+					</image>
+				</ImageView>
+			</items>
+			<BorderPane.margin>
+				<Insets />
+			</BorderPane.margin>
+			<padding>
+				<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+			</padding>
+		</ToolBar>
+	</left>
+	<right>
+		<VBox alignment="TOP_CENTER" prefWidth="150.0" style="-fx-background-color: #cdcdcd;" BorderPane.alignment="CENTER">
+			<children>
+				<Label text="Argent disponible">
+					<VBox.margin>
+						<Insets bottom="10.0" top="10.0" />
+					</VBox.margin>
+				</Label>
+				<HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="200.0" spacing="5.0">
+					<children>
+						<Label fx:id="cash" text="500" />
+						<Label text="CHF" />
+					</children>
+					<VBox.margin>
+						<Insets />
+					</VBox.margin>
+				</HBox>
+				<HBox fx:id="ProgressBarHBox" alignment="BOTTOM_CENTER" prefHeight="0.0" prefWidth="150.0" VBox.vgrow="ALWAYS" />
+			</children>
+		</VBox>
+	</right>
+</BorderPane>

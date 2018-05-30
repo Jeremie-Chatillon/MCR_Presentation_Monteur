@@ -3,11 +3,14 @@ package burgerBuilder;
 
 import burgerBuilder.burger.*;
 
+import java.util.List;
+
 public abstract class BurgerBuilder {
 
 
 
     protected Burger burger;
+    protected List<Item> items;
 
     public BurgerBuilder(){
         burger = new Burger();

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="379mm" y="159mm" width="442mm" height="137mm" viewBox="379 159 442 137">
+<style type="text/css"><![CDATA[
+text { font:12px Dialog; }
+]]></style>
+<rect x="400" y="200" width="150" height="56" style="fill:rgb(255,247,225);stroke:none" />
+<rect x="400" y="200" width="150" height="56" style="fill:none;stroke:rgb(65,65,65);stroke-width:1.2;stroke-linecap:square" />
+<text x="432" y="223" style="font:12px Ubuntu">BurgerBuilder</text>
+<line x1="400" y1="235" x2="550" y2="235" style="fill:none;stroke:rgb(65,65,65);stroke-width:1.2;stroke-linecap:square" />
+<line x1="400" y1="245" x2="550" y2="245" style="fill:none;stroke:rgb(65,65,65);stroke-width:1.2;stroke-linecap:square" />
+<rect x="650" y="220" width="150" height="55" style="fill:rgb(255,247,225);stroke:none" />
+<rect x="650" y="220" width="150" height="55" style="fill:none;stroke:rgb(65,65,65);stroke-width:1.2;stroke-linecap:square" />
+<text x="704" y="243" style="font:12px Ubuntu">Burger</text>
+<line x1="650" y1="255" x2="800" y2="255" style="fill:none;stroke:rgb(65,65,65);stroke-width:1.2;stroke-linecap:square" />
+<line x1="650" y1="265" x2="800" y2="265" style="fill:none;stroke:rgb(65,65,65);stroke-width:1.2;stroke-linecap:square" />
+<path d="M380,160 L380,190 L467,190 Q497,190 497,160 L380,160" style="fill:rgb(255,247,225);stroke:none" />
+<path d="M380,160 L380,190 L467,190 Q497,190 497,160 L380,160" style="fill:none;stroke:rgb(65,65,65);stroke-width:1.2;stroke-linecap:square" />
+<text x="385" y="182" style="font:16px Ubuntu">BurgerGame</text>
+<rect x="380" y="160" width="439" height="134" style="fill:none;stroke:rgb(64,64,64);stroke-linecap:square" />
+</svg>

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="iso-8859-15" standalone="no"?>
+<classDiagram>
+  <diagramElements defaultViewEntities="ALL" defaultViewEnum="false" defaultViewMethods="TYPE_AND_NAME" defaultVisibleTypes="true" informations="" name="BurgerGame">
+    <entity entityType="ENUM" id="26804" name="Condiment">
+      <EnumValue>BREAD</EnumValue>
+      <EnumValue>BEEF</EnumValue>
+      <EnumValue>CHICKEN</EnumValue>
+      <EnumValue>FISH</EnumValue>
+      <EnumValue>TOMATOE</EnumValue>
+      <EnumValue>CHEESE</EnumValue>
+      <EnumValue>PICKLE</EnumValue>
+      <EnumValue>OGNON</EnumValue>
+      <EnumValue>LETTUCE</EnumValue>
+      <EnumValue>SAUCE</EnumValue>
+    </entity>
+    <entity entityType="ENUM" id="26801" name="Condiment"/>
+    <entity entityType="CLASS" id="26776" isAbstract="false" name="EnumCondiment" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="attribute" type="void" visibility="PRIVATE"/>
+    </entity>
+    <inheritance id="25048">
+      <child>25043</child>
+      <parent>24385</parent>
+    </inheritance>
+    <inheritance id="25049">
+      <child>25042</child>
+      <parent>24385</parent>
+    </inheritance>
+    <inheritance id="25050">
+      <child>25047</child>
+      <parent>24385</parent>
+    </inheritance>
+    <inheritance id="25051">
+      <child>24387</child>
+      <parent>24385</parent>
+    </inheritance>
+    <inheritance id="25052">
+      <child>24388</child>
+      <parent>24385</parent>
+    </inheritance>
+    <entity entityType="CLASS" id="24385" isAbstract="true" name="BurgerBuilder" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="condiments" type="LinkedList&lt;Condiment&gt;" visibility="PROTECTED"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="extras" type="LinkedList&lt;Condiment&gt;" visibility="PROTECTED"/>
+      <method is-constructor="true" isAbstract="true" isStatic="false" name="BurgerBuilder" returnType="" view="DEFAULT" visibility="PUBLIC"/>
+      <method is-constructor="true" isAbstract="true" isStatic="false" name="BurgerBuilder" returnType="" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="supplement" type="LinkedList&lt;Item&gt;"/>
+      </method>
+      <method isAbstract="true" isStatic="false" name="build" returnType="Burger" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="true" isStatic="false" name="checkItems" returnType="bool" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="true" isStatic="false" name="getPrice" returnType="int" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="24386" isAbstract="false" name="Burger" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="top" type="Bread" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="mid" type="LinkedList&lt;Item&gt;" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="bot" type="Bread" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="price" type="int" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="isValid" type="Boolean" visibility="PRIVATE"/>
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="Burger" returnType="" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="top" type="Bread"/>
+        <variable const="false" name="mid" type="LinkedList&lt;Item&gt;"/>
+        <variable const="false" name="bot" type="Bread"/>
+        <variable const="false" name="price" type="int"/>
+        <variable const="false" name="isValide" type="Booleean"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="isValide" returnType="Boolean" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="getPrice" returnType="int" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="24387" isAbstract="false" name="FishBurgerBuilder" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="ITEMS_MENDATORY" type="LinkedList&lt;Condiment&gt;" visibility="PROTECTED"/>
+    </entity>
+    <entity entityType="CLASS" id="24388" isAbstract="false" name="BeefBurger" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="ITEMS_MENDATORY" type="LinkedList&lt;Condiment&gt;" visibility="PROTECTED"/>
+    </entity>
+    <entity entityType="CLASS" id="25042" isAbstract="false" name="ChickenBurer" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="ITEMS_MENDATORY" type="LinkedList&lt;Condiment&gt;" visibility="PROTECTED"/>
+    </entity>
+    <entity entityType="CLASS" id="25043" isAbstract="false" name="GreekBurgerBuilder" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="true" name="ITEMS_MENDATORY" type="LinkedList&lt;Condiment&gt;" visibility="PROTECTED"/>
+    </entity>
+    <entity entityType="CLASS" id="25047" isAbstract="false" name="CheezBurger" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="ITEMS_MENDATORY" type="LinkedList&lt;Condiment&gt;" visibility="PROTECTED"/>
+    </entity>
+  </diagramElements>
+  <umlView grid="10" name="Main view" open="true">
+    <relationView color="-12566464" relationId="25052">
+      <line>
+        <point>
+          <x>601</x>
+          <y>311</y>
+        </point>
+        <point>
+          <x>441</x>
+          <y>281</y>
+        </point>
+        <point>
+          <x>441</x>
+          <y>261</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="25051">
+      <line>
+        <point>
+          <x>431</x>
+          <y>321</y>
+        </point>
+        <point>
+          <x>441</x>
+          <y>261</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="25050">
+      <line>
+        <point>
+          <x>901</x>
+          <y>311</y>
+        </point>
+        <point>
+          <x>761</x>
+          <y>301</y>
+        </point>
+        <point>
+          <x>431</x>
+          <y>301</y>
+        </point>
+        <point>
+          <x>431</x>
+          <y>261</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="25049">
+      <line>
+        <point>
+          <x>741</x>
+          <y>311</y>
+        </point>
+        <point>
+          <x>601</x>
+          <y>301</y>
+        </point>
+        <point>
+          <x>431</x>
+          <y>301</y>
+        </point>
+        <point>
+          <x>431</x>
+          <y>261</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="25048">
+      <line>
+        <point>
+          <x>91</x>
+          <y>321</y>
+        </point>
+        <point>
+          <x>111</x>
+          <y>301</y>
+        </point>
+        <point>
+          <x>431</x>
+          <y>301</y>
+        </point>
+        <point>
+          <x>431</x>
+          <y>261</y>
+        </point>
+      </line>
+    </relationView>
+    <componentView color="-2079" componentID="25047" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>850</x>
+        <y>310</y>
+        <w>150</w>
+        <h>70</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="25043" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>0</x>
+        <y>320</y>
+        <w>340</w>
+        <h>70</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="25042" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>690</x>
+        <y>310</y>
+        <w>150</w>
+        <h>70</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="24388" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>530</x>
+        <y>310</y>
+        <w>150</w>
+        <h>70</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="24387" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>350</x>
+        <y>320</y>
+        <w>150</w>
+        <h>70</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="24386" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>880</x>
+        <y>70</y>
+        <w>510</w>
+        <h>175</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="24385" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>270</x>
+        <y>100</y>
+        <w>330</w>
+        <h>160</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="26804" enumValuesVisible="DEFAULT">
+      <geometry>
+        <x>220</x>
+        <y>490</y>
+        <w>150</w>
+        <h>49</h>
+      </geometry>
+    </componentView>
+  </umlView>
+</classDiagram>

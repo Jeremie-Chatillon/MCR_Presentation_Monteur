@@ -1,6 +1,6 @@
-package Structure;
+package structure;
 
-import Builder.BurgerBuilder;
+import builder.BurgerBuilder;
 
 import java.util.LinkedList;
 
@@ -42,7 +42,7 @@ public class Menu {
     */
 
     public BurgerBuilder getBurgerBuilder(LinkedList<Condiment> supplement){
-        LinkedList<Condiment> tmp = new LinkedList<>(condiments);
+        LinkedList<Condiment> tmp = new LinkedList<Condiment>(condiments);
         if(supplement != null)
             tmp.addAll(condiments.indexOf(Condiment.BREAD_TOP), supplement);
 

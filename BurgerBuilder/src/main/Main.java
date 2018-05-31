@@ -21,7 +21,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
-		primaryStage.setTitle("Burger Builder");
+		primaryStage.setTitle("Burger builder");
 		//this.primaryStage.getIcons().add(new Image("/images/BlaajjPaint.jpg")); //TODO: add icon
 		
 		initRootLayout();

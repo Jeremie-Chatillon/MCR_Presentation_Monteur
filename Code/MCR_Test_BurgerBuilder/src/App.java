@@ -2,6 +2,12 @@ import Utils.Menu;
 import burgerBuilder.BurgerBuilder;
 import burgerBuilder.VegBuilder;
 import burgerBuilder.burger.Burger;
+import burgerBuilder.burger.Condiment;
+import burgerBuilder.burger.Item;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class App {
 
@@ -33,5 +39,13 @@ public class App {
 
         System.out.println(b + " " + b.isValid());
         System.out.println(b2 + " " + b2.isValid());
+
+        List<Item> items = new LinkedList(Arrays.asList(Item.BREAD, Item.CHEEZ, Item.LETTUCE, Item.CHEEZ, Item.BREAD));
+        LinkedList<Item> tmp = new LinkedList<>(items);
+        tmp.addAll(items.indexOf(Item.CHEEZ), new LinkedList(Arrays.asList(Item.CHEEZ, Item.CHEEZ, Item.CHEEZ)));
+
+        System.out.println("\n" + items);
+        System.out.println(tmp);
+
     }
 }

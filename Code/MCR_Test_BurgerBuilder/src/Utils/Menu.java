@@ -4,6 +4,7 @@ import burgerBuilder.BurgerBuilder;
 import burgerBuilder.burger.Condiment;
 import burgerBuilder.burger.Item;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 
 
@@ -11,6 +12,7 @@ public class Menu {
     private String name;
     private int prix;
     private LinkedList<Condiment> condiments;
+
 
     private Class<? extends BurgerBuilder> burgerBuilderClass;
 

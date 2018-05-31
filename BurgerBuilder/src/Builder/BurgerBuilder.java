@@ -36,5 +36,8 @@ public class BurgerBuilder {
         return condiments.equals(condimentsOrder);
     }
 
+    public void clear(){
+        condiments.clear();
+    }
 
 }

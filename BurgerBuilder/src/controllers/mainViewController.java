@@ -1,5 +1,7 @@
 package controllers;
 
+import Builder.BurgerBuilder;
+import Structure.Condiment;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -101,52 +103,57 @@ public class mainViewController {
 	
 	@FXML
 	void handleSauce() {
-	
+		handleCondiment(Condiment.SAUCE);
 	}
 	
 	@FXML
 	void handleLettuce() {
-	
+		handleCondiment(Condiment.LETTUCE);
 	}
 	
 	@FXML
 	void handleOgnon() {
-	
+		handleCondiment(Condiment.OGNON);
 	}
 	
 	@FXML
 	void handlePickle() {
-	
+		handleCondiment(Condiment.PICKLE);
 	}
 	
 	@FXML
 	void handleCheese() {
-	
+		handleCondiment(Condiment.CHEESE);
 	}
 	
 	@FXML
 	void handleTomatoe() {
-	
+		handleCondiment(Condiment.TOMATOE);
 	}
 	
 	@FXML
 	void handleFish() {
-	
+		handleCondiment(Condiment.FISH);
 	}
 	
 	@FXML
 	void handleChicken() {
-	
+		handleCondiment(Condiment.CHICKEN);
 	}
 	
 	@FXML
 	void handleBeef() {
-	
+		handleCondiment(Condiment.BEEF);
 	}
-	
+
+
 	@FXML
-	void handleBread() {
-	
+	void handleBreadTop() {
+		handleCondiment(Condiment.BREAD_TOP);
+	}
+	@FXML
+	void handleBreadBot() {
+		handleCondiment(Condiment.BREAD_BOT);
 	}
 	
 	void updateCashValue(int newCashValue) {
@@ -155,5 +162,57 @@ public class mainViewController {
 	
 	int getCashValue() {
 		return Integer.parseInt(cash.getText());
+	}
+
+	void addCash(int amount){
+		cash.setText(String.valueOf(getCashValue() + amount));
+	}
+
+	private BurgerBuilder burgerBuilder;
+
+	private void handleCondiment(Condiment c){
+
+		System.out.println(c);
+		addCash(-c.getPrice());
+
+		if(burgerBuilder == null)
+			return;
+
+		addCash(-c.getPrice());
+
+
+		burgerBuilder.addCondiment(c);
+	}
+
+	private void handleCustomer(){
+
+
+
+		if(burgerBuilder != null)
+			return;
+
+		//currentCustomer = c;
+		//burgerBuilder = customer.getBurgerBuilder();
+	}
+
+	private void handleDelete(){
+		if(burgerBuilder == null)
+			return;
+
+		burgerBuilder.clear();
+		burgerBuilder = null;
+	}
+
+	private void handleBuild(){
+		if(burgerBuilder == null)
+			return;
+
+		if(burgerBuilder.build() == null){
+			// vaumitBar.add(1);
+		}
+
+		//updateCashValue(getCashValue() + curentCustomer.getPriceOrder());
+
+		burgerBuilder = null;
 	}
 }

@@ -11,9 +11,14 @@ import java.util.Random;
 
 public class Menu {
 
-    static List<Menu> menus = new ArrayList<>(Arrays.asList(new Menu("Beef Burger", BeefBurgerBuilder.class)));
-
-
+    static  List<Menu> menus = new ArrayList<>(Arrays.asList(
+            new Menu("Beef", BeefBurgerBuilder.class),
+            new Menu("Chicken", ChickenBurgerBuilder.class),
+            new Menu("Fish", FishBurgerBuilder.class),
+            new Menu("Full Meat", FullMeatBurgerBuilder.class),
+            new Menu("Greek", GreekBurgerBuilder.class),
+            new Menu("Vegan", VegBurgerBuilder.class)
+    ));
 
     private String name;
     // Si on a des classes abstraites pour les menus
@@ -26,7 +31,7 @@ public class Menu {
      */
 
     public Menu(String name, Class<? extends BurgerBuilder> burgerBuilderClass) {
-        this.name = name;
+        this.name = name + " Burger";
         this.burgerBuilderClass = burgerBuilderClass;
     }
     
@@ -49,6 +54,11 @@ public class Menu {
             System.err.println(e);
             return null;
         }
+    }
+
+
+    public String toString(){
+        return name;
     }
 
 

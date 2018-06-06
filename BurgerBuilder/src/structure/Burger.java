@@ -1,6 +1,7 @@
 package structure;
 
 
+
 import java.util.List;
 
 public class Burger {

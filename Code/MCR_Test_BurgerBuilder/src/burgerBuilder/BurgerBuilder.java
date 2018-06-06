@@ -7,10 +7,11 @@ import java.util.List;
 
 public abstract class BurgerBuilder {
 
+    protected List<Condiment> condiments;
 
-
-    protected Burger burger;
-    protected List<Item> items;
+    public List<Condiment> getCondiments(){
+        return Condiment.BREAD_TOP;
+    }
 
     public BurgerBuilder(){
         burger = new Burger();

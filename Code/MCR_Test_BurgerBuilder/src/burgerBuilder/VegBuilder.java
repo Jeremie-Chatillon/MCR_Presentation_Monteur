@@ -1,13 +1,9 @@
 package burgerBuilder;
 
 import burgerBuilder.burger.Burger;
-import burgerBuilder.burger.Cheez;
 import burgerBuilder.burger.Item;
-import burgerBuilder.burger.Lettuce;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 

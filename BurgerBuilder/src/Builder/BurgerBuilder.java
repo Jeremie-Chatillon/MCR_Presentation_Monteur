@@ -1,25 +1,22 @@
-package Builder;
+package builder;
 
-import Structure.Burger;
-import Structure.Condiment;
+import structure.Burger;
+import structure.Condiment;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class BurgerBuilder {
-
-
+    
     protected List<Condiment> condiments;
-    private List<Condiment> condimentsOrder;     // List d'items voulus par le client
-
-
+    private List<Condiment> condimentsOrder;     // List de condiments voulus par le client
+    
     public BurgerBuilder(List<Condiment> condimentsOrder){
         condiments = new LinkedList<Condiment>();
         this.condimentsOrder = condimentsOrder;
     }
 
     public Burger build(){
-
         if(check()) {
             return new Burger(condiments);
         } else {
@@ -32,7 +29,6 @@ public class BurgerBuilder {
     }
 
     private boolean check(){
-
         return condiments.equals(condimentsOrder);
     }
 

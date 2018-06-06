@@ -180,6 +180,7 @@ public class mainViewController {
 
 		addCash(-c.getPrice());
 
+		
 
 		burgerBuilder.addCondiment(c);
 	}

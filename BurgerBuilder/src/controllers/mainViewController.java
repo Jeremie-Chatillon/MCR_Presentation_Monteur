@@ -5,11 +5,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import structure.Condiment;
 
-public class mainViewController {
+import static javafx.scene.input.KeyCode.*;
+
+
+public class mainViewController{
 	
 	@FXML
 	private VBox satisfactionVBox;
@@ -100,7 +106,70 @@ public class mainViewController {
 		
 		vomitVBox.getChildren().add(vomitBar.getProgressHolder());
 		satisfactionVBox.getChildren().add(satisfactionBar.getProgressHolder());
+/*
+        bind(KeyEvent.VK_A, );
+        bind(KeyEvent.VK_B, );
+        bind(KeyEvent.VK_C, );
+        bind(KeyEvent.VK_D, );
+        bind(KeyEvent.VK_E, );
+        bind(KeyEvent.VK_F, );
+        bind(KeyEvent.VK_G, );
+        bind(KeyEvent.VK_H, );
+        bind(KeyEvent.VK_I, );
+        bind(KeyEvent.VK_J, );
+        bind(KeyEvent.VK_K, );
+       */
+
+
 	}
+
+	@FXML
+	private void handleOnKeyPressed(KeyEvent event) {
+		// raccourci clavier permettant de créer un nouveau projet
+
+
+        switch (event.getCode()) {
+            case A:
+                handleSauce();
+                break;
+            case B:
+                handleLettuce();
+                break;
+            case C:
+                handleOgnon();
+                break;
+            case D:
+                handlePickle();
+                break;
+            case E:
+                handleCheese();
+                break;
+            case F:
+                handleTomatoe();
+                break;
+            case G:
+                handleFish();
+                break;
+            case H:
+                handleChicken();
+                break;
+            case I:
+                handleBeef();
+                break;
+            case J:
+                handleBreadTop();
+                break;
+            case K:
+                handleBreadBot();
+                break;
+
+            case BACK_SPACE:
+                handleCancel();
+                break;
+        }
+
+
+    }
 	
 	@FXML
 	void handleSauce() {
@@ -174,6 +243,7 @@ public class mainViewController {
 	
 	@FXML
 	public void handleDeliver() {
+        handleCustomer();
 		if (burgerBuilder == null) {
 			return;
 		}
@@ -222,10 +292,14 @@ public class mainViewController {
 	}
 	
 	private void handleCustomer() {
+        vomitBar.add();
 		if (burgerBuilder != null)
 			return;
 		
 		//currentCustomer = c;
 		//burgerBuilder = customer.getBurgerBuilder();
 	}
+
+
+
 }

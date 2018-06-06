@@ -9,7 +9,10 @@ import javafx.scene.transform.Translate;
 public class VerticalProgressBar {
 	private ProgressBar progressBar = new ProgressBar();
 	private Group progressHolder = new Group(progressBar);
-	
+
+	double MAX = 1;
+	double value = 0;
+
 	public VerticalProgressBar(double width, double height) {
 		progressBar.setMinSize(StackPane.USE_PREF_SIZE, StackPane.USE_PREF_SIZE);
 		progressBar.setPrefSize(height, width);
@@ -18,6 +21,8 @@ public class VerticalProgressBar {
 				new Translate(0, width),
 				new Rotate(-90, 0, 0)
 		);
+
+		progressBar.setProgress(value);
 	}
 	
 	public ProgressBar getProgressBar() {
@@ -26,5 +31,10 @@ public class VerticalProgressBar {
 	
 	public Group getProgressHolder() {
 		return progressHolder;
+	}
+
+	void add(){
+
+		progressBar.setProgress(value);
 	}
 }

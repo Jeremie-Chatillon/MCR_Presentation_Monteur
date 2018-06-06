@@ -1,11 +1,13 @@
 package structure;
 
 
-import builder.*;
+import builder.BeefBurgerBuilder;
+import builder.BurgerBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class Menu {
 
@@ -27,8 +29,18 @@ public class Menu {
         this.name = name;
         this.burgerBuilderClass = burgerBuilderClass;
     }
-
-
+    
+    public static List<Menu> getAllMenus() {
+        return menus;
+    }
+    
+    public static Menu getOneRandomMenu() {
+        Random random = new Random();
+        int i = random.nextInt() % menus.size();
+        
+        return menus.get(i);
+    }
+    
     // Si on a des classes abstraites pour les menus
     public BurgerBuilder getNewBurgerBuilder(){
         try {

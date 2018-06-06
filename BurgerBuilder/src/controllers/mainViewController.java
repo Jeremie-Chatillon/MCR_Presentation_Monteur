@@ -2,6 +2,7 @@ package controllers;
 
 import builder.BurgerBuilder;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -9,31 +10,28 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import structure.Condiment;
 
-public class mainViewController {
+public class MainViewController {
 	
 	@FXML
-	private VBox satisfactionVBox;
-	
-	@FXML
-	private VBox vomitVBox;
+	private Button cancel;
 	
 	@FXML
 	private ImageView chicken;
 	
 	@FXML
-	private Label menuClient4;
+	private ImageView imgClient;
 	
 	@FXML
 	private ImageView breadTop;
 	
 	@FXML
-	private Label menuClient3;
+	private VBox clientView;
 	
 	@FXML
-	private Label menuClient2;
+	private Label timerClient;
 	
 	@FXML
-	private Label menuClient1;
+	private Button deliver;
 	
 	@FXML
 	private ImageView beef;
@@ -51,10 +49,16 @@ public class mainViewController {
 	private ImageView cheese;
 	
 	@FXML
+	private HBox waitingQueue;
+	
+	@FXML
 	private ImageView tomatoe;
 	
 	@FXML
 	private VBox builderVBox;
+	
+	@FXML
+	private VBox satisfactionVBox;
 	
 	@FXML
 	private ImageView fish;
@@ -66,32 +70,26 @@ public class mainViewController {
 	private HBox ProgressBarHBox;
 	
 	@FXML
-	private ImageView imgClient4;
+	private VBox vomitVBox;
 	
 	@FXML
 	private ImageView ognon;
 	
 	@FXML
-	private ImageView imgClient3;
-	
-	@FXML
-	private ImageView imgClient2;
-	
-	@FXML
-	private HBox imgClient1;
+	private Label menuClient;
 	
 	@FXML
 	private Label cash;
 	
-	@FXML
 	private VerticalProgressBar vomitBar;
 	
-	@FXML
 	private VerticalProgressBar satisfactionBar;
 	
 	private BurgerBuilder burgerBuilder;
 	
 	private int nbCondiments;
+	
+	private ClientsManager clientsManager;
 	
 	@FXML
 	void initialize() {
@@ -100,6 +98,8 @@ public class mainViewController {
 		
 		vomitVBox.getChildren().add(vomitBar.getProgressHolder());
 		satisfactionVBox.getChildren().add(satisfactionBar.getProgressHolder());
+		
+		clientsManager = new ClientsManager(waitingQueue);
 	}
 	
 	@FXML
@@ -187,6 +187,17 @@ public class mainViewController {
 		burgerBuilder = null;
 	}
 	
+	@FXML
+	private void handleCustomer() {
+		if (burgerBuilder == null) {
+			clientsManager.setSelectedClient();
+		}
+		
+		
+		//currentCustomer = c;
+		//burgerBuilder = customer.getBurgerBuilder();
+	}
+	
 	private void addCondimentInBurger(Image image) {
 		final ImageView imv = new ImageView();
 		imv.setFitHeight(100);
@@ -219,13 +230,5 @@ public class mainViewController {
 			//burgerBuilder.addCondiment(c);
 			addCondimentInBurger(c.getImage());
 		}
-	}
-	
-	private void handleCustomer() {
-		if (burgerBuilder != null)
-			return;
-		
-		//currentCustomer = c;
-		//burgerBuilder = customer.getBurgerBuilder();
 	}
 }

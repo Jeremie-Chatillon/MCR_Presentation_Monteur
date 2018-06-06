@@ -1,8 +1,7 @@
 package structure;
 
 
-import builder.BeefBurgerBuilder;
-import builder.BurgerBuilder;
+import builder.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;

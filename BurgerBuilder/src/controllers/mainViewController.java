@@ -6,17 +6,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import structure.Condiment;
+import structure.Person;
 
-import static javafx.scene.input.KeyCode.*;
 
-
-public class mainViewController{
+public class MainViewController {
 	
 	@FXML
 	private Button cancel;
@@ -117,59 +114,57 @@ public class mainViewController{
         bind(KeyEvent.VK_J, );
         bind(KeyEvent.VK_K, );
        */
-
-
 		
-		clientsManager = new ClientsManager(waitingQueue);
+		clientsManager = new ClientsManager(waitingQueue, this);
 	}
-
+	
 	@FXML
 	private void handleOnKeyPressed(KeyEvent event) {
 		// raccourci clavier permettant de créer un nouveau projet
-
-
-        switch (event.getCode()) {
-            case A:
-                handleSauce();
-                break;
-            case B:
-                handleLettuce();
-                break;
-            case C:
-                handleOgnon();
-                break;
-            case D:
-                handlePickle();
-                break;
-            case E:
-                handleCheese();
-                break;
-            case F:
-                handleTomatoe();
-                break;
-            case G:
-                handleFish();
-                break;
-            case H:
-                handleChicken();
-                break;
-            case I:
-                handleBeef();
-                break;
-            case J:
-                handleBreadTop();
-                break;
-            case K:
-                handleBreadBot();
-                break;
-
-            case BACK_SPACE:
-                handleCancel();
-                break;
-        }
-
-
-    }
+		
+		
+		switch (event.getCode()) {
+			case A:
+				handleSauce();
+				break;
+			case B:
+				handleLettuce();
+				break;
+			case C:
+				handleOgnon();
+				break;
+			case D:
+				handlePickle();
+				break;
+			case E:
+				handleCheese();
+				break;
+			case F:
+				handleTomatoe();
+				break;
+			case G:
+				handleFish();
+				break;
+			case H:
+				handleChicken();
+				break;
+			case I:
+				handleBeef();
+				break;
+			case J:
+				handleBreadTop();
+				break;
+			case K:
+				handleBreadBot();
+				break;
+			
+			case BACK_SPACE:
+				handleCancel();
+				break;
+		}
+		
+		
+	}
 	
 	@FXML
 	void handleSauce() {
@@ -243,7 +238,7 @@ public class mainViewController{
 	
 	@FXML
 	public void handleDeliver() {
-        handleCustomer();
+		handleCustomer();
 		if (burgerBuilder == null) {
 			return;
 		}
@@ -260,7 +255,7 @@ public class mainViewController{
 	@FXML
 	private void handleCustomer() {
 		if (burgerBuilder == null) {
-			clientsManager.setSelectedClient();
+			//clientsManager.setSelectedClient();
 		}
 		
 		
@@ -300,5 +295,9 @@ public class mainViewController{
 			//burgerBuilder.addCondiment(c);
 			addCondimentInBurger(c.getImage());
 		}
+	}
+	
+	public void aClientLeave(Person person) {
+	
 	}
 }

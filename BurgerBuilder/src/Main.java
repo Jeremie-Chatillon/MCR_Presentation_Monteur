@@ -1,7 +1,6 @@
-package main;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -32,7 +31,12 @@ public class Main extends Application {
 	 */
 	private void initRootLayout() {
 		try {
-			rootLayout = FXMLLoader.load(getClass().getResource("/fxmls/mainView.fxml"));
+			FXMLLoader loader = new FXMLLoader();
+			//loader.setBuilderFactory(new JavaFXBuilderFactory());
+			
+			//loader.setLocation(getClass().getResource("fxml/mainView.fxml"));
+			//loader.setControllerFactory(controllerClass -> new MainViewController());
+			rootLayout = FXMLLoader.load(getClass().getResource("fxml/mainView.fxml"), null, new JavaFXBuilderFactory());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

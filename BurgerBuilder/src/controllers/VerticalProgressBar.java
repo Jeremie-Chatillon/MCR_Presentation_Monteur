@@ -10,17 +10,18 @@ import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 
-import static controllers.Rules.MAX_VAUMIT_HANGRY_BAR;
-
 public class VerticalProgressBar {
 	private ProgressBar progressBar = new ProgressBar();
 	private Group progressHolder = new Group(progressBar);
 	private Timeline timer;
-	
+	private int max;
 	private double oldValue = 0;
-	private double newValue = oldValue + 1.0 / MAX_VAUMIT_HANGRY_BAR;
+	private double newValue;
 	
-	public VerticalProgressBar(double width, double height) {
+	public VerticalProgressBar(double width, double height, int max) {
+		this.max = max;
+		newValue = oldValue + 1.0 / max;
+		
 		progressBar.setMinSize(StackPane.USE_PREF_SIZE, StackPane.USE_PREF_SIZE);
 		progressBar.setPrefSize(height, width);
 		progressBar.setMaxSize(StackPane.USE_COMPUTED_SIZE, StackPane.USE_COMPUTED_SIZE);
@@ -52,24 +53,19 @@ public class VerticalProgressBar {
 	}
 	
 	public void addToValue() {
-		if (oldValue <= MAX_VAUMIT_HANGRY_BAR) {
-			timer = new Timeline(
-					new KeyFrame(
-							Duration.ZERO,
-							new KeyValue(progressBar.progressProperty(), oldValue)
-					),
-					new KeyFrame(
-							Duration.seconds(2),
-							new KeyValue(progressBar.progressProperty(), newValue)
-					)
-			);
-			oldValue = newValue;
-			newValue = oldValue + 1.0 / MAX_VAUMIT_HANGRY_BAR;
-			
-			timer.playFromStart();
-		} else {
-			System.out.println("La barre de vomit ou celle de satisfaction est plein! --> Perdu!");
-			// TODO: mettre fin au jeu!
-		}
+		timer = new Timeline(
+				new KeyFrame(
+						Duration.ZERO,
+						new KeyValue(progressBar.progressProperty(), oldValue)
+				),
+				new KeyFrame(
+						Duration.seconds(2),
+						new KeyValue(progressBar.progressProperty(), newValue)
+				)
+		);
+		oldValue = newValue;
+		newValue = oldValue + 1.0 / max;
+		
+		timer.playFromStart();
 	}
 }

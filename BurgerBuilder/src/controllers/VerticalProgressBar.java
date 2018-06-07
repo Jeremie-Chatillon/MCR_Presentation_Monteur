@@ -33,8 +33,7 @@ public class VerticalProgressBar {
 		return progressHolder;
 	}
 
-	void add(){
-
+	void setProgress(double value){
 		progressBar.setProgress(value);
 	}
 }

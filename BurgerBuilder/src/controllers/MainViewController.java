@@ -15,7 +15,7 @@ import structure.Condiment;
 import static javafx.scene.input.KeyCode.*;
 
 
-public class mainViewController{
+public class MainViewController {
 	
 	@FXML
 	private VBox satisfactionVBox;
@@ -96,7 +96,8 @@ public class mainViewController{
 	private VerticalProgressBar satisfactionBar;
 	
 	private BurgerBuilder burgerBuilder;
-	
+	private int nbVaumit;
+	private int nbHangry;
 	private int nbCondiments;
 	
 	@FXML
@@ -106,21 +107,6 @@ public class mainViewController{
 		
 		vomitVBox.getChildren().add(vomitBar.getProgressHolder());
 		satisfactionVBox.getChildren().add(satisfactionBar.getProgressHolder());
-/*
-        bind(KeyEvent.VK_A, );
-        bind(KeyEvent.VK_B, );
-        bind(KeyEvent.VK_C, );
-        bind(KeyEvent.VK_D, );
-        bind(KeyEvent.VK_E, );
-        bind(KeyEvent.VK_F, );
-        bind(KeyEvent.VK_G, );
-        bind(KeyEvent.VK_H, );
-        bind(KeyEvent.VK_I, );
-        bind(KeyEvent.VK_J, );
-        bind(KeyEvent.VK_K, );
-       */
-
-
 	}
 
 	@FXML
@@ -229,12 +215,7 @@ public class mainViewController{
 	
 	@FXML
 	public void handleCancel() {
-		/*
-		if (burgerBuilder == null) {
-			return;
-		}
-		*/
-		
+
 		//burgerBuilder.clear();
 		burgerBuilder = null;
 		nbCondiments = 0;
@@ -292,7 +273,7 @@ public class mainViewController{
 	}
 	
 	private void handleCustomer() {
-        vomitBar.add();
+        vomitBar.setProgress();
 		if (burgerBuilder != null)
 			return;
 		

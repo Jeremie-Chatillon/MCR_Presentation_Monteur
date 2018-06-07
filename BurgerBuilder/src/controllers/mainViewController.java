@@ -300,5 +300,10 @@ public class MainViewController {
 	
 	public void aClientLeave(Client client) {
 		clientsManager.removeClient(client);
+		satisfactionBar.addToValue();
+	}
+	
+	public void aClientVomited(){
+		vomitBar.addToValue();
 	}
 }

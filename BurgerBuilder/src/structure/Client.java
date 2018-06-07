@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-import static controllers.Rules.NB_MS_MIN_BEFORE_NEW_CLIENT;
+import static controllers.Rules.NB_MAX_MS_CLIENT_WAITING;
 
 @DefaultProperty(value = "waitingQueue")
 public class Client extends VBox {
@@ -44,7 +44,7 @@ public class Client extends VBox {
 						new KeyValue(timerProgressBar.progressProperty(), 1)
 				),
 				new KeyFrame(
-						Duration.millis(NB_MS_MIN_BEFORE_NEW_CLIENT),
+						Duration.millis(NB_MAX_MS_CLIENT_WAITING),
 						new KeyValue(timerProgressBar.progressProperty(), 0)
 				)
 		);

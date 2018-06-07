@@ -2,14 +2,14 @@ package structure;
 
 
 
-import java.util.List;
+import java.util.LinkedList;
 
 public class Burger {
     private String name;
 
-    private List<Condiment> items;
+    private LinkedList<Condiment> items;
 
-    public Burger(List<Condiment> items){
+    public Burger(LinkedList<Condiment> items){
 
         this.items = items;
         name = "UnknowBurger";
@@ -21,7 +21,7 @@ public class Burger {
     }
 
 
-    public List<Condiment> getItems() {
+    public LinkedList<Condiment> getItems() {
         return items;
     }
 

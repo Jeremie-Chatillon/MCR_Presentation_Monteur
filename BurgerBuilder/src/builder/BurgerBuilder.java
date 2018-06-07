@@ -4,29 +4,28 @@ import structure.Burger;
 import structure.Condiment;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public abstract class BurgerBuilder {
     
-    protected List<Condiment> condiments;
-    private List<Condiment> condimentsOrder;     // List de condiments voulus par le client
+    protected LinkedList<Condiment> condiments;
+    private LinkedList<Condiment> condimentsOrder;     // LinkedList de condiments voulus par le client
 
 
 
-    public BurgerBuilder(List<Condiment> condimentsOrder){
-        condiments = new LinkedList<Condiment>();
+    public BurgerBuilder(LinkedList<Condiment> condimentsOrder){
+        condiments = new LinkedList<>();
         this.condimentsOrder = condimentsOrder;
     }
 
-    public List<Condiment> getCondiments(){
-        List<Condiment> l = new LinkedList<>(getGarintures());
+    public LinkedList<Condiment> getCondiments(){
+        LinkedList<Condiment> l = new LinkedList<>(getGarintures());
         l.add(Condiment.BREAD_TOP);
         l.add(0,Condiment.BREAD_BOT);
 
         return l;
     }
 
-    abstract protected List<Condiment> getGarintures();
+    abstract protected LinkedList<Condiment> getGarintures();
 
     public Burger build(){
         if(check()) {

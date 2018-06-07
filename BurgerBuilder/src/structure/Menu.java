@@ -1,23 +1,23 @@
 package structure;
 
-
 import builder.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.Random;
 
 public class Menu {
 	
-	static List<Menu> menus = new ArrayList<>(Arrays.asList(
-			new Menu("Beef", BeefBurgerBuilder.class),
-			new Menu("Chicken", ChickenBurgerBuilder.class),
-			new Menu("Fish", FishBurgerBuilder.class),
-			new Menu("Full Meat", FullMeatBurgerBuilder.class),
-			new Menu("Greek", GreekBurgerBuilder.class),
-			new Menu("Vegan", VegBurgerBuilder.class)
-	));
+	static LinkedList<Menu> menus = new LinkedList<>(
+			Arrays.asList(
+					new Menu("Beef", BeefBurgerBuilder.class),
+					new Menu("Chicken", ChickenBurgerBuilder.class),
+					new Menu("Fish", FishBurgerBuilder.class),
+					new Menu("Full Meat", FullMeatBurgerBuilder.class),
+					new Menu("Greek", GreekBurgerBuilder.class),
+					new Menu("Vegan", VegBurgerBuilder.class)
+			)
+	);
 	
 	private String name;
 	
@@ -33,7 +33,7 @@ public class Menu {
 		this.burgerBuilderClass = burgerBuilderClass;
 	}
 	
-	public static List<Menu> getAllMenus() {
+	public static LinkedList<Menu> getAllMenus() {
 		return menus;
 	}
 	
@@ -53,7 +53,6 @@ public class Menu {
 			return null;
 		}
 	}
-	
 	
 	public String toString() {
 		return name;

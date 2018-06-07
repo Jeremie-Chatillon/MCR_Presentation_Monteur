@@ -4,18 +4,17 @@ import structure.Condiment;
 
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 
 public class ChickenBurgerBuilder extends BurgerBuilder {
 
-    static List<Condiment> garnutures = new LinkedList<>(Arrays.asList(Condiment.OGNON,  Condiment.SAUCE, Condiment.CHICKEN, Condiment.TOMATOE));
+    static LinkedList<Condiment> garnutures = new LinkedList<>(Arrays.asList(Condiment.OGNON,  Condiment.SAUCE, Condiment.CHICKEN, Condiment.TOMATOE));
 
-    public ChickenBurgerBuilder(List<Condiment> condimentsOrder) {
+    public ChickenBurgerBuilder(LinkedList<Condiment> condimentsOrder) {
         super(condimentsOrder);
     }
 
     @Override
-    protected List<Condiment> getGarintures() {
+    protected LinkedList<Condiment> getGarintures() {
         return garnutures;
     }
 }

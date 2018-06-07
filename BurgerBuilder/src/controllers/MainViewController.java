@@ -301,4 +301,6 @@ public class MainViewController {
 	public void aClientVomited() {
 		vomitBar.addToValue();
 	}
+
+
 }

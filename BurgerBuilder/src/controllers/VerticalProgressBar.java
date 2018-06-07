@@ -68,4 +68,9 @@ public class VerticalProgressBar {
 		
 		timer.playFromStart();
 	}
+
+	public void setProgress(double d){
+		progressBar.setProgress(d);
+	}
+
 }

@@ -64,9 +64,6 @@ public class MainViewController {
 	
 	@FXML
 	private void handleOnKeyPressed(KeyEvent event) {
-		// raccourci clavier permettant de créer un nouveau projet
-		
-		
 		switch (event.getCode()) {
 			case A:
 				handleSauce();
@@ -107,7 +104,6 @@ public class MainViewController {
 			case BACK_SPACE:
 				handleCancel();
 				break;
-			
 		}
 	}
 	
@@ -168,7 +164,7 @@ public class MainViewController {
 	
 	@FXML
 	public void handleCancel() {
-		nbCondiments = 0;
+		
 		resetBuilderAndView();
 	}
 	
@@ -201,7 +197,7 @@ public class MainViewController {
 	public void anAngryClientLeave(Client client) {
 		angryBar.addToValue();
 		clientsManager.removeClient(client);
-		resetBuilderAndView();
+		//resetBuilderAndView();				//FIXME: Pas besoin de supprimer
 	}
 	
 	public void aClientVomitedAndLeave() {
@@ -247,6 +243,7 @@ public class MainViewController {
 			burgerBuilder.reset();
 			burgerBuilder = null;
 		}
+		nbCondiments = 0;
 		resetView();
 	}
 	

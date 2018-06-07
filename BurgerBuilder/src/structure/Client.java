@@ -66,7 +66,7 @@ public class Client extends VBox {
 		img.setImage(new Image("clientWaiting.png"));
 		
 		desiredMenu = new Label();
-		desiredMenu.setText(Menu.getOneRandomMenu().toString());
+		desiredMenu.setText(menu.toString());
 		
 		getChildren().addAll(img, desiredMenu, timerProgressBar);
 		

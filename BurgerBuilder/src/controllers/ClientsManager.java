@@ -46,9 +46,12 @@ public class ClientsManager {
 	}
 	
 	public void setSelectedClient(Client selectedClient) {
-		this.selectedClient.startTimer(); // on redémarre le timer du client actuellement sélectionné
+		if(this.selectedClient != null) {
+			this.selectedClient.startTimer();     // on redémarre le timer du client actuellement sélectionné
+		}
+
 		this.selectedClient = selectedClient; // on sélectionne le nouveau client
-		selectedClient.stopTimer(); // on arrête son timer
+		selectedClient.stopTimer();           // on arrête son timer
 	}
 	
 	private void addNewClientToQueue(boolean selectNewClient, boolean gameStarted) {
@@ -71,6 +74,8 @@ public class ClientsManager {
 	
 	public void removeClient(Client client) {
 		waitingQueue.getChildren().remove(client);
+
+		System.err.println(waitingQueue.getChildren().size());	//FIXME
 	}
 	
 	public void startTimers() {

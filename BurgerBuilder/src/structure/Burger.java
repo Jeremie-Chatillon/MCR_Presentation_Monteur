@@ -1,40 +1,39 @@
 package structure;
 
-
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 
 import static controllers.Rules.CONDIMENT_BENEF;
 
+/**
+ * Classe implémentant un burger.
+ */
 public class Burger {
+	
 	private String name;
-	private final LinkedList<Condiment> items;
+	private final LinkedList<Condiment> content; // liste contenant tous les condiments du burger
 	
-	public Burger(LinkedList<Condiment> items) {
-		this.items = items;
+	/**
+	 * Construit un burger défini par la liste de condiments passée en paramètre.
+	 *
+	 * @param content,
+	 * 		la liste de condiment définissant le burger.
+	 */
+	public Burger(LinkedList<Condiment> content) {
+		this.content = content;
 		name = "Undefined Burger";
 	}
 	
-	public Burger(Condiment... condiments) {
-		this.items = new LinkedList<>();
-		this.items.addAll(Arrays.asList(condiments));
-		name = "Undefined Burger";
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public LinkedList<Condiment> getItems() {
-		return items;
-	}
-	
-	public int getPrice(){
+	/**
+	 * Retourne le prix que doit pyer le client pour acheter ce burger.
+	 *
+	 * @return un entier, le prix que doit payer le client pour acheter ce burger.
+	 */
+	public int getPrice() {
 		int brugerPrice = 0;
-		for (Condiment c: items) {
+		for (Condiment c : content) {
 			brugerPrice += c.getPrice() + CONDIMENT_BENEF;
 		}
 		return brugerPrice;
@@ -42,17 +41,17 @@ public class Burger {
 	
 	@Override
 	public String toString() {
-		return name + ": " + items.toString();
+		return name + ": " + content.toString();
 	}
 	
 	/**
-	 * Retourne un objet vbox contenant les images du burger. Permet de dessiner le burger.
+	 * Permet de dessiner le burger. Retourne une VBox contenant les images du burger.
 	 *
-	 * @return une vbox contenant les images des éléments du burger.
+	 * @return une VBox contenant les images des condiments constituant le burger.
 	 */
 	public VBox getBurgerVBox() {
 		VBox vbox = new VBox();
-		for (Condiment c : items) {
+		for (Condiment c : content) {
 			ImageView imageView = new ImageView();
 			imageView.setFitHeight(50);
 			imageView.setFitWidth(100);

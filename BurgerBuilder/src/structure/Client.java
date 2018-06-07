@@ -27,7 +27,7 @@ public class Client extends VBox {
 	private int id;
 	private Timeline timer;
 	private Menu menu;
-	private boolean isRunning;
+	private boolean gameIsRunning;
 	
 	private ImageView img;
 	private Label desiredMenu;
@@ -54,7 +54,7 @@ public class Client extends VBox {
 		
 		timer.setOnFinished(event -> {
 			System.out.println("Un client a attendu trop longtemps et s'en va pas content!");
-			mainViewController.aClientLeave(Client.this);
+			mainViewController.anAngryClientLeave(Client.this);
 		});
 		setAlignment(Pos.CENTER);
 		
@@ -70,7 +70,7 @@ public class Client extends VBox {
 		
 		getChildren().addAll(img, desiredMenu, timerProgressBar);
 		
-		if (isRunning) {
+		if (gameIsRunning) {
 			startTimer();
 		}
 		
@@ -84,10 +84,14 @@ public class Client extends VBox {
 	
 	public void startTimer() {
 		timer.playFromStart();
-		isRunning = true;
+		gameIsRunning = true;
 	}
 	
 	public BurgerBuilder getNewBurgerBuilder(){
-		return menu.getNewBurgerBuilder();
+		return menu.getBurgerBuilder();
+	}
+	
+	public Menu getMenu() {
+		return menu;
 	}
 }

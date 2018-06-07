@@ -10,9 +10,7 @@ import structure.Client;
 
 import java.util.Random;
 
-import static controllers.Rules.NB_MAX_CLIENTS;
-import static controllers.Rules.NB_MS_MAX_BEFORE_NEW_CLIENT;
-import static controllers.Rules.NB_MS_MIN_BEFORE_NEW_CLIENT;
+import static controllers.Rules.*;
 
 public class ClientsManager {
 	private MainViewController mainViewController;
@@ -21,24 +19,23 @@ public class ClientsManager {
 	private Client selectedClient;
 	private Timeline timer;
 	private int remainingTime;
-	private int nbClientsWaiting = 0;
 	private Random random = new Random();
+	private boolean gameIsRunning = false;
 	
 	public ClientsManager(HBox waitingQueue, MainViewController mainViewController) {
 		this.mainViewController = mainViewController;
 		this.waitingQueue = waitingQueue;
-		selectedClient = addNewClientToQueue();
+		addNewClientToQueue(true, gameIsRunning);
 		remainingTime = 5000;
 		
 		timer = new Timeline(new KeyFrame(
 				Duration.millis(250),
 				event -> {
 					remainingTime -= 250;
-					//drawClient(); // TODO: à vérifier si utile
 					
 					if (remainingTime <= 0) {
 						System.out.println("Un nouveau client est arrivé dans la queue!");
-						addNewClientToQueue();
+						addNewClientToQueue(false, gameIsRunning);
 						remainingTime = random.nextInt(NB_MS_MAX_BEFORE_NEW_CLIENT - NB_MS_MIN_BEFORE_NEW_CLIENT) + NB_MS_MIN_BEFORE_NEW_CLIENT;
 						System.out.println(remainingTime);
 						
@@ -52,15 +49,22 @@ public class ClientsManager {
 		this.selectedClient = selectedClient;
 	}
 	
-	private Client addNewClientToQueue() {
-		Client client = null;
+	private void addNewClientToQueue(boolean selectNewClient, boolean gameStarted) {
 		if (waitingQueue.getChildren().size() < NB_MAX_CLIENTS) {
-			client = new Client(mainViewController);
+			Client client = new Client(mainViewController);
 			waitingQueue.getChildren().add(client);
-			nbClientsWaiting++;
-			client.startTimer();
+			
+			if (selectNewClient) {
+				selectedClient = client;
+			}
+			if (gameStarted) {
+				client.startTimer();
+			}
 		}
-		return client;
+	}
+	
+	public void removeSelectedClient() {
+		removeClient(selectedClient);
 	}
 	
 	public void removeClient(Client client) {
@@ -68,8 +72,9 @@ public class ClientsManager {
 	}
 	
 	public void startTimers() {
+		gameIsRunning = true;
 		timer.play();
-		ObservableList<Client> children = (ObservableList)waitingQueue.getChildren();
+		ObservableList<Client> children = (ObservableList) waitingQueue.getChildren();
 		for (Client c : children) {
 			c.startTimer();
 		}

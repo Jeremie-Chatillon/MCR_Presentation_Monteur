@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 public enum Condiment {
 	BREAD_TOP("Bread_top", 1, "breadTop.png"),
 	BREAD_BOT("Bread_bot", 1, "breadBottom.png"),
-	BEEF("Beef", 7, "beef.png"),
+	BEEF("Beef", 8, "beef.png"),
 	CHICKEN("Chicken", 7, "chicken.png"),
 	FISH("Fish", 8, "fish.png"),
 	TOMATOE("Tomatoe", 3, "tomatoe.png"),

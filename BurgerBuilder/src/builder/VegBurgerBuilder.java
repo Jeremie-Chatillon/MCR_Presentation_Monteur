@@ -4,18 +4,16 @@ import structure.Condiment;
 
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.LinkedList;
 
 public class VegBurgerBuilder extends BurgerBuilder {
-
-    static LinkedList<Condiment> garnutures = new LinkedList<>(Arrays.asList(Condiment.LETTUCE, Condiment.TOMATOE, Condiment.CHEESE, Condiment.LETTUCE));
-
-    public VegBurgerBuilder(LinkedList<Condiment> condimentsOrder) {
-        super(condimentsOrder);
-    }
-
-    @Override
-    protected LinkedList<Condiment> getGarintures() {
-        return garnutures;
-    }
+	
+	private static VegBurgerBuilder vegBurgerBuilderInstance = new VegBurgerBuilder();
+	
+	public static VegBurgerBuilder getInstance() {
+		return vegBurgerBuilderInstance;
+	}
+	
+	private VegBurgerBuilder() {
+		condimentsBurgerMenu = new LinkedList<>(Arrays.asList(Condiment.BREAD_BOT, Condiment.LETTUCE, Condiment.TOMATOE, Condiment.CHEESE, Condiment.LETTUCE, Condiment.BREAD_TOP));
+	}
 }

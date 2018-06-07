@@ -6,45 +6,32 @@ import structure.Condiment;
 import java.util.LinkedList;
 
 public abstract class BurgerBuilder {
-    
-    protected LinkedList<Condiment> condiments;
-    private LinkedList<Condiment> condimentsOrder;     // LinkedList de condiments voulus par le client
-
-
-
-    public BurgerBuilder(LinkedList<Condiment> condimentsOrder){
-        condiments = new LinkedList<>();
-        this.condimentsOrder = condimentsOrder;
-    }
-
-    public LinkedList<Condiment> getCondiments(){
-        LinkedList<Condiment> l = new LinkedList<>(getGarintures());
-        l.add(Condiment.BREAD_TOP);
-        l.add(0,Condiment.BREAD_BOT);
-
-        return l;
-    }
-
-    abstract protected LinkedList<Condiment> getGarintures();
-
-    public Burger build(){
-        if(check()) {
-            return new Burger(condiments);
-        } else {
-            return null;
-        }
-    }
-
-    public void addCondiment(Condiment c){
-        condiments.add(c);
-    }
-
-    private boolean check(){
-        return condiments.equals(condimentsOrder);
-    }
-
-    public void clear(){
-        condiments.clear();
-    }
-
+	
+	protected LinkedList<Condiment> condimentsBurgerMenu; // liste des aliments que contient le burger type
+	
+	protected LinkedList<Condiment> condiments = new LinkedList<>(); // liste des aliments contenus dans le burger en cours de création
+	
+	public Burger build() {
+		if (check()) {
+			return createBurger();
+		} else {
+			throw new IllegalArgumentException("Le burger construit n'est pas un burger du menu!");
+		}
+	}
+	
+	public Burger createBurger() {
+		return new Burger(condimentsBurgerMenu);
+	}
+	
+	protected boolean check() {
+		return condimentsBurgerMenu.equals(condiments);
+	}
+	
+	public void addCondiment(Condiment c) {
+		condiments.add(c);
+	}
+	
+	public void reset() {
+		condiments.clear();
+	}
 }

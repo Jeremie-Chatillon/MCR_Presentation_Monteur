@@ -6,15 +6,14 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 public class GreekBurgerBuilder extends BurgerBuilder {
-
-    static LinkedList<Condiment> garnutures = new LinkedList<>(Arrays.asList(Condiment.SAUCE));
-
-    public GreekBurgerBuilder(LinkedList<Condiment> condimentsOrder) {
-        super(condimentsOrder);
-    }
-
-    @Override
-    protected LinkedList<Condiment> getGarintures() {
-        return garnutures;
-    }
+	
+	private static GreekBurgerBuilder greekBurgerBuilderInstance = new GreekBurgerBuilder();
+	
+	public static GreekBurgerBuilder getInstance() {
+		return greekBurgerBuilderInstance;
+	}
+	
+	private GreekBurgerBuilder() {
+		condimentsBurgerMenu = new LinkedList<>(Arrays.asList(Condiment.BREAD_BOT, Condiment.SAUCE, Condiment.BREAD_TOP));
+	}
 }

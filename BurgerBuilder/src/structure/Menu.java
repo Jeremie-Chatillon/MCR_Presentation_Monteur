@@ -7,33 +7,33 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Menu {
-	
-	static LinkedList<Menu> menus = new LinkedList<>(
+	public static LinkedList<Menu> menus = new LinkedList<>(
 			Arrays.asList(
-					new Menu("Beef", BeefBurgerBuilder.class),
-					new Menu("Chicken", ChickenBurgerBuilder.class),
-					new Menu("Fish", FishBurgerBuilder.class),
-					new Menu("Full Meat", FullMeatBurgerBuilder.class),
-					new Menu("Greek", GreekBurgerBuilder.class),
-					new Menu("Vegan", VegBurgerBuilder.class)
+					new Menu("Beef", BeefBurgerBuilder.getInstance()),
+					new Menu("Chicken", ChickenBurgerBuilder.getInstance()),
+					new Menu("Fish", FishBurgerBuilder.getInstance()),
+					new Menu("Full Meat", FullMeatBurgerBuilder.getInstance()),
+					new Menu("Greek", GreekBurgerBuilder.getInstance()),
+					new Menu("Vegan", VegBurgerBuilder.getInstance())
 			)
 	);
 	
 	private String name;
 	
-	// Si on a des classes abstraites pour les menus
-	private Class<? extends BurgerBuilder> burgerBuilderClass;
+	private BurgerBuilder builder;
+	
+	private Burger burger;
 	
 	/**
-	 * Test pour la class en variable public Menu(Class<? extends BurgerBuilder> burgerBuilderClass){ this.burgerBuilderClass = burgerBuilderClass; }
+	 * Test pour la classe en variable public Menu(Class<? extends BurgerBuilder> burgerBuilderClass){ this.burgerBuilderClass = burgerBuilderClass; }
 	 */
-	
-	public Menu(String name, Class<? extends BurgerBuilder> burgerBuilderClass) {
+	public Menu(String name, BurgerBuilder burgerBuilder) {
 		this.name = name + " Burger";
-		this.burgerBuilderClass = burgerBuilderClass;
+		this.builder = burgerBuilder;
+		burger = builder.createBurger();
 	}
 	
-	public static LinkedList<Menu> getAllMenus() {
+	public LinkedList<Menu> getAllMenus() {
 		return menus;
 	}
 	
@@ -44,14 +44,12 @@ public class Menu {
 		return menus.get(i);
 	}
 	
-	// Si on a des classes abstraites pour les menus
-	public BurgerBuilder getNewBurgerBuilder() {
-		try {
-			return burgerBuilderClass.newInstance();
-		} catch (Exception e) {
-			System.err.println(e);
-			return null;
-		}
+	public BurgerBuilder getBurgerBuilder() {
+		return builder;
+	}
+	
+	public Burger getBurger() {
+		return burger;
 	}
 	
 	public String toString() {

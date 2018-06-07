@@ -10,7 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import structure.Condiment;
-import structure.Person;
+import structure.Client;
 
 
 public class MainViewController {
@@ -116,6 +116,7 @@ public class MainViewController {
        */
 		
 		clientsManager = new ClientsManager(waitingQueue, this);
+		clientsManager.startTimers();
 	}
 	
 	@FXML
@@ -297,7 +298,7 @@ public class MainViewController {
 		}
 	}
 	
-	public void aClientLeave(Person person) {
-	
+	public void aClientLeave(Client client) {
+		clientsManager.removeClient(client);
 	}
 }

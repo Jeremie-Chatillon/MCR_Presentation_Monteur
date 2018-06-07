@@ -20,7 +20,8 @@ public class Menu {
     ));
 
     private String name;
-    // Si on a des classes abstraites pour les menus
+    
+	// Si on a des classes abstraites pour les menus
     private Class<? extends BurgerBuilder> burgerBuilderClass;
 
     /** Test pour la class en variable
@@ -39,8 +40,8 @@ public class Menu {
     }
     
     public static Menu getOneRandomMenu() {
-        Random random = new Random();
-        int i = random.nextInt() % menus.size();
+    	Random random = new Random();
+	    int i = random.nextInt(menus.size());
         
         return menus.get(i);
     }

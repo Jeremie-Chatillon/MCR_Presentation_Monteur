@@ -1,0 +1,79 @@
+package structure;
+
+import controllers.MainViewController;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.beans.DefaultProperty;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.util.Duration;
+
+import static controllers.Rules.MAX_TIME_CLIENT_WAITING;
+
+@DefaultProperty(value = "waitingQueue")
+public class Client extends VBox {
+	
+	private static int nbClients;
+	
+	private MainViewController mainViewController;
+	private int id;
+	private Timeline timer;
+	private Menu menu;
+	private boolean isRunning;
+	
+	private ImageView img;
+	private Label desiredMenu;
+	private ProgressBar timerProgressBar;
+	
+	public Client(MainViewController mainViewController) {
+		super();
+		this.mainViewController = mainViewController;
+		
+		this.id = ++nbClients;
+		menu = Menu.getOneRandomMenu();
+		
+		timerProgressBar = new ProgressBar();
+		timer = new Timeline(
+				new KeyFrame(
+						Duration.ZERO,
+						new KeyValue(timerProgressBar.progressProperty(), 1)
+				),
+				new KeyFrame(
+						Duration.millis(MAX_TIME_CLIENT_WAITING),
+						new KeyValue(timerProgressBar.progressProperty(), 0)
+				)
+		);
+		
+		timer.setOnFinished(event -> {
+			System.out.println("Un client a attendu trop longtemps et s'en va pas content!");
+			mainViewController.aClientLeave(Client.this);
+		});
+		setAlignment(Pos.CENTER);
+		
+		img = new ImageView();
+		img.setPreserveRatio(true);
+		img.setSmooth(true);
+		img.setFitHeight(100);
+		img.setFitWidth(50);
+		img.setImage(new Image("clientWaiting.png"));
+		
+		desiredMenu = new Label();
+		desiredMenu.setText(Menu.getOneRandomMenu().toString());
+		
+		getChildren().addAll(img, desiredMenu, timerProgressBar);
+		
+		if (isRunning) {
+			startTimer();
+		}
+	}
+	
+	public void startTimer() {
+		timer.playFromStart();
+		isRunning = true;
+	}
+}

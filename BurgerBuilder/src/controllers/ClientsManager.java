@@ -1,61 +1,76 @@
 package controllers;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.collections.ObservableList;
 import javafx.scene.layout.HBox;
-import structure.Person;
+import javafx.util.Duration;
+import structure.Client;
 
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.Random;
 
 import static controllers.Rules.NB_MAX_CLIENTS;
 import static controllers.Rules.NB_MS_BEFORE_NEW_CLIENT;
 
-public class ClientsManager implements Runnable {
+public class ClientsManager {
 	private MainViewController mainViewController;
 	
 	private HBox waitingQueue;
-	private Person selectedClient;
-	private ArrayList<Person> waitingClients;
-	private Timer timer;
+	private Client selectedClient;
+	private Timeline timer;
+	private int remainingTime;
 	private int nbClientsWaiting = 0;
+	private Random random = new Random();
 	
 	public ClientsManager(HBox waitingQueue, MainViewController mainViewController) {
 		this.mainViewController = mainViewController;
-		
 		this.waitingQueue = waitingQueue;
-		waitingClients = new ArrayList<>(NB_MAX_CLIENTS);
 		selectedClient = addNewClientToQueue();
+		remainingTime = 5000;
+		
+		timer = new Timeline(new KeyFrame(
+				Duration.millis(250),
+				event -> {
+					remainingTime -= 250;
+					//drawClient(); // TODO: à vérifier si utile
+					
+					if (remainingTime <= 0) {
+						System.out.println("Un nouveau client est arrivé dans la queue!");
+						addNewClientToQueue();
+						remainingTime = random.nextInt((NB_MS_BEFORE_NEW_CLIENT - 10000) + 1000) + 10000;
+						System.out.println(remainingTime);
+						
+					}
+				}
+		));
+		timer.setCycleCount(Animation.INDEFINITE);
 	}
 	
-	public void setSelectedClient(Person selectedClient) {
+	public void setSelectedClient(Client selectedClient) {
 		this.selectedClient = selectedClient;
 	}
 	
-	private Person addNewClientToQueue() {
-		Person p = new Person(mainViewController);
-		waitingQueue.getChildren().add(p.getPersonNode());
-		waitingClients.add(p);
-		nbClientsWaiting++;
-		return p;
+	private Client addNewClientToQueue() {
+		Client client = null;
+		if (waitingQueue.getChildren().size() < NB_MAX_CLIENTS) {
+			client = new Client(mainViewController);
+			waitingQueue.getChildren().add(client);
+			nbClientsWaiting++;
+			client.startTimer();
+		}
+		return client;
 	}
 	
-	@Override
-	public void run() {
-		
-		// un nouveau client arrive toute les 30 secondes.
-		timer.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				try {
-					wait(NB_MS_BEFORE_NEW_CLIENT);
-					addNewClientToQueue();
-					
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				
-			}
-		}, 60*1000);
+	public void removeClient(Client client) {
+		waitingQueue.getChildren().remove(client);
 	}
 	
+	public void startTimers() {
+		timer.play();
+		ObservableList<Client> children = (ObservableList)waitingQueue.getChildren();
+		for (Client c : children) {
+			c.startTimer();
+		}
+	}
 }

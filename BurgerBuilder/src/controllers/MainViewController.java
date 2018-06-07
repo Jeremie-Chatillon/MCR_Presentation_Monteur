@@ -89,7 +89,8 @@ public class MainViewController {
 	private VerticalProgressBar satisfactionBar;
 	
 	private BurgerBuilder burgerBuilder;
-	
+	private int nbVaumit;
+	private int nbHangry;
 	private int nbCondiments;
 	
 	private ClientsManager clientsManager;
@@ -225,12 +226,7 @@ public class MainViewController {
 	
 	@FXML
 	public void handleCancel() {
-		/*
-		if (burgerBuilder == null) {
-			return;
-		}
-		*/
-		
+
 		//burgerBuilder.clear();
 		burgerBuilder = null;
 		nbCondiments = 0;

@@ -9,8 +9,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import structure.Condiment;
 import structure.Client;
+import structure.Condiment;
+
+import static controllers.Rules.MAX_ANGRY_BAR;
+import static controllers.Rules.MAX_VAUMIT_BAR;
 
 
 public class MainViewController {
@@ -61,7 +64,7 @@ public class MainViewController {
 	private VBox builderVBox;
 	
 	@FXML
-	private VBox satisfactionVBox;
+	private VBox angryVBox;
 	
 	@FXML
 	private ImageView fish;
@@ -86,7 +89,7 @@ public class MainViewController {
 	
 	private VerticalProgressBar vomitBar;
 	
-	private VerticalProgressBar satisfactionBar;
+	private VerticalProgressBar angryBar;
 	
 	private BurgerBuilder burgerBuilder;
 	private int nbVaumit;
@@ -97,11 +100,11 @@ public class MainViewController {
 	
 	@FXML
 	void initialize() {
-		vomitBar = new VerticalProgressBar(80, 400);
-		satisfactionBar = new VerticalProgressBar(80, 400);
+		vomitBar = new VerticalProgressBar(80, 400, MAX_VAUMIT_BAR);
+		angryBar = new VerticalProgressBar(80, 400, MAX_ANGRY_BAR);
 		
 		vomitVBox.getChildren().add(vomitBar.getProgressHolder());
-		satisfactionVBox.getChildren().add(satisfactionBar.getProgressHolder());
+		angryVBox.getChildren().add(angryBar.getProgressHolder());
 /*
         bind(KeyEvent.VK_A, );
         bind(KeyEvent.VK_B, );
@@ -226,7 +229,7 @@ public class MainViewController {
 	
 	@FXML
 	public void handleCancel() {
-
+		
 		//burgerBuilder.clear();
 		burgerBuilder = null;
 		nbCondiments = 0;
@@ -235,9 +238,6 @@ public class MainViewController {
 	
 	@FXML
 	public void handleDeliver() {
-
-        satisfactionBar.setProgress(Rules.MAX_VAUMIT_HANGRY_BAR);
-		handleCustomer();
 		if (burgerBuilder == null) {
 			return;
 		}
@@ -252,14 +252,11 @@ public class MainViewController {
 	}
 	
 	@FXML
-	private void handleCustomer() {
+	public void handleCustomer(Client client) {
 		if (burgerBuilder == null) {
-			//clientsManager.setSelectedClient();
+			clientsManager.setSelectedClient(client);
+			burgerBuilder = client.getNewBurgerBuilder();
 		}
-		
-		
-		//currentCustomer = c;
-		//burgerBuilder = customer.getBurgerBuilder();
 	}
 	
 	private void addCondimentInBurger(Image image) {
@@ -298,10 +295,10 @@ public class MainViewController {
 	
 	public void aClientLeave(Client client) {
 		clientsManager.removeClient(client);
-		satisfactionBar.addToValue();
+		angryBar.addToValue();
 	}
 	
-	public void aClientVomited(){
+	public void aClientVomited() {
 		vomitBar.addToValue();
 	}
 

@@ -1,15 +1,18 @@
 package structure;
 
+import builder.BurgerBuilder;
 import controllers.MainViewController;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.beans.DefaultProperty;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
@@ -70,10 +73,21 @@ public class Client extends VBox {
 		if (isRunning) {
 			startTimer();
 		}
+		
+		setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				mainViewController.handleCustomer(Client.this);
+			}
+		});
 	}
 	
 	public void startTimer() {
 		timer.playFromStart();
 		isRunning = true;
+	}
+	
+	public BurgerBuilder getNewBurgerBuilder(){
+		return menu.getNewBurgerBuilder();
 	}
 }

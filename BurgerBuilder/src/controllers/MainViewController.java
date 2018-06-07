@@ -235,6 +235,8 @@ public class MainViewController {
 	
 	@FXML
 	public void handleDeliver() {
+
+        satisfactionBar.setProgress(Rules.MAX_VAUMIT_HANGRY_BAR);
 		handleCustomer();
 		if (burgerBuilder == null) {
 			return;
@@ -302,4 +304,6 @@ public class MainViewController {
 	public void aClientVomited(){
 		vomitBar.addToValue();
 	}
+
+
 }

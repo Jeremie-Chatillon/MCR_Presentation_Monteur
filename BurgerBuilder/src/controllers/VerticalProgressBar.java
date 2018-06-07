@@ -52,7 +52,7 @@ public class VerticalProgressBar {
 	}
 	
 	public void addToValue() {
-		if (oldValue <= MAX_VAUMIT_HANGRY_BAR) {
+
 			timer = new Timeline(
 					new KeyFrame(
 							Duration.ZERO,
@@ -67,9 +67,11 @@ public class VerticalProgressBar {
 			newValue = oldValue + 1.0 / MAX_VAUMIT_HANGRY_BAR;
 			
 			timer.playFromStart();
-		} else {
-			System.out.println("La barre de vomit ou celle de satisfaction est plein! --> Perdu!");
-			// TODO: mettre fin au jeu!
-		}
+
 	}
+
+	public void setProgress(double d){
+		progressBar.setProgress(d);
+	}
+
 }

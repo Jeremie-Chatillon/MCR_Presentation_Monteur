@@ -11,7 +11,8 @@ import structure.Client;
 import java.util.Random;
 
 import static controllers.Rules.NB_MAX_CLIENTS;
-import static controllers.Rules.NB_MS_BEFORE_NEW_CLIENT;
+import static controllers.Rules.NB_MS_MAX_BEFORE_NEW_CLIENT;
+import static controllers.Rules.NB_MS_MIN_BEFORE_NEW_CLIENT;
 
 public class ClientsManager {
 	private MainViewController mainViewController;
@@ -38,7 +39,7 @@ public class ClientsManager {
 					if (remainingTime <= 0) {
 						System.out.println("Un nouveau client est arrivé dans la queue!");
 						addNewClientToQueue();
-						remainingTime = random.nextInt((NB_MS_BEFORE_NEW_CLIENT - 10000) + 1000) + 10000;
+						remainingTime = random.nextInt(NB_MS_MAX_BEFORE_NEW_CLIENT - NB_MS_MIN_BEFORE_NEW_CLIENT) + NB_MS_MIN_BEFORE_NEW_CLIENT;
 						System.out.println(remainingTime);
 						
 					}

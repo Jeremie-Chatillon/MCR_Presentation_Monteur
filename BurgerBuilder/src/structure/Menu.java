@@ -2,11 +2,11 @@ package structure;
 
 
 import builder.*;
-import com.sun.javafx.geom.Vec2f;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class Menu {
 
@@ -20,7 +20,8 @@ public class Menu {
     ));
 
     private String name;
-    // Si on a des classes abstraites pour les menus
+    
+	// Si on a des classes abstraites pour les menus
     private Class<? extends BurgerBuilder> burgerBuilderClass;
 
     /** Test pour la class en variable
@@ -33,8 +34,18 @@ public class Menu {
         this.name = name + " Burger";
         this.burgerBuilderClass = burgerBuilderClass;
     }
-
-
+    
+    public static List<Menu> getAllMenus() {
+        return menus;
+    }
+    
+    public static Menu getOneRandomMenu() {
+    	Random random = new Random();
+	    int i = random.nextInt(menus.size());
+        
+        return menus.get(i);
+    }
+    
     // Si on a des classes abstraites pour les menus
     public BurgerBuilder getNewBurgerBuilder(){
         try {

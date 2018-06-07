@@ -46,7 +46,9 @@ public class ClientsManager {
 	}
 	
 	public void setSelectedClient(Client selectedClient) {
-		this.selectedClient = selectedClient;
+		this.selectedClient.startTimer(); // on redémarre le timer du client actuellement sélectionné
+		this.selectedClient = selectedClient; // on sélectionne le nouveau client
+		selectedClient.stopTimer(); // on arrête son timer
 	}
 	
 	private void addNewClientToQueue(boolean selectNewClient, boolean gameStarted) {

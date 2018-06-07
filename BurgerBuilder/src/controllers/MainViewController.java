@@ -109,8 +109,6 @@ public class MainViewController {
 				break;
 			
 		}
-		
-		
 	}
 	
 	@FXML
@@ -170,10 +168,8 @@ public class MainViewController {
 	
 	@FXML
 	public void handleCancel() {
-		burgerBuilder.reset();
-		burgerBuilder = null;
 		nbCondiments = 0;
-		resetView();
+		resetBuilderAndView();
 	}
 	
 	@FXML
@@ -181,11 +177,13 @@ public class MainViewController {
 		if (burgerBuilder != null) {
 			// fixme: ce try catch devrait être fait dans la classe client je dirais...
 			try {
-				resetBuilder();
 				Burger burger = burgerBuilder.build();
 				updateCashValue(getCashValue() + burger.getPrice());
+				clientsManager.removeSelectedClient();
+				resetBuilderAndView();
 			} catch (IllegalArgumentException e) {
 				aClientVomitedAndLeave();
+				resetBuilderAndView();
 			}
 		}
 	}
@@ -203,7 +201,7 @@ public class MainViewController {
 	public void anAngryClientLeave(Client client) {
 		angryBar.addToValue();
 		clientsManager.removeClient(client);
-		resetBuilder();
+		resetBuilderAndView();
 	}
 	
 	public void aClientVomitedAndLeave() {
@@ -241,15 +239,15 @@ public class MainViewController {
 	private void resetView() {
 		builderVBox.getChildren().clear();
 		menuVBox.getChildren().clear();
-		resetBuilder();
 	}
 	
-	private void resetBuilder() {
+	private void resetBuilderAndView() {
 		menuLabel.setText("Sélectionnez un client pour traiter sa commande");
 		if (burgerBuilder != null) {
 			burgerBuilder.reset();
 			burgerBuilder = null;
 		}
+		resetView();
 	}
 	
 	private void updateMenuView(Client client) {

@@ -17,15 +17,14 @@ public abstract class BurgerBuilder {
 	protected LinkedList<Condiment> condiments = new LinkedList<>();
 	
 	/**
-	 * Construit un burger à partir de <b>condiments</b>, la liste des condiments actuellement contenus dans le
-	 * builder.
+	 * Construit un burger à partir de <b>condiments</b>, la liste des condiments actuellement contenus dans le builder.
 	 * <br>Vérifie que cette liste corresponde à la liste <b>condimentsBurgerMenu</b>. Si c'est le cas, retourne le
 	 * Burger.
 	 * <br>Sinon, lève une IllegalArgumentException et interrompt la création du burger.
 	 *
 	 * @throws IllegalArgumentException
-	 * 		si le burger ne peut pas être créé car la liste de condiment <b>condiments</b> ne correspond pas à celle du
-	 * 		burger exemple du menu (<b>condimentsBurgerMenu</b>.
+	 * 		si le burger ne peut pas être créé car la liste de condiment <b>condiments</b> ne correspond pas à celle du burger exemple du menu
+	 * 		(<b>condimentsBurgerMenu</b>.
 	 */
 	public Burger build() throws IllegalArgumentException {
 		if (check()) {
@@ -45,8 +44,8 @@ public abstract class BurgerBuilder {
 	}
 	
 	/**
-	 * Retourne vrai si le burger en construction dans le builder contient exactement les mêmes condiments (et dans le
-	 * même ordre) que le burger exemple du menu, false sinon.
+	 * Retourne vrai si le burger en construction dans le builder contient exactement les mêmes condiments (et dans le même ordre) que le burger
+	 * exemple du menu, false sinon.
 	 *
 	 * @return
 	 */
@@ -69,5 +68,13 @@ public abstract class BurgerBuilder {
 	 */
 	public void reset() {
 		condiments.clear();
+	}
+	
+	/**
+	 * Retourne true si le burger actuellement en construction est vide, false sinon.
+	 * @return true si le burger actuellement en construction est vide, false sinon.
+	 */
+	public boolean burgerIsEmpty() {
+		return condiments.size() == 0;
 	}
 }

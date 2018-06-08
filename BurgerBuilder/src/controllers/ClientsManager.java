@@ -37,7 +37,7 @@ public class ClientsManager {
 	public ClientsManager(HBox waitingQueue, MainViewController mainViewController) {
 		this.mainViewController = mainViewController;
 		this.waitingQueue = waitingQueue;
-		addNewClientToQueue(true, gameIsRunning); // on ajoute un client à la file d'attente
+		addNewClientToQueue(gameIsRunning); // on ajoute un client à la file d'attente
 		remainingTime = 5000; // le 2ème client arrive après 5 secondes
 		
 		timer = new Timeline(new KeyFrame(
@@ -45,7 +45,7 @@ public class ClientsManager {
 				event -> {
 					remainingTime -= 250;
 					if (remainingTime <= 0) { // le timer s'est écoulé
-						addNewClientToQueue(false, gameIsRunning); // on ajoute un client à la file d'attente
+						addNewClientToQueue(gameIsRunning); // on ajoute un client à la file d'attente
 						
 						// on défini aléatoirement un temps entre NB_MS_MIN_BEFORE_NEW_CLIENT et NB_MS_MAX_BEFORE_NEW_CLIENT ms devant s'écouler
 						// avant l'apparition du prochain client.
@@ -63,34 +63,36 @@ public class ClientsManager {
 	 * 		le client à sélectionner.
 	 */
 	public void setSelectedClient(Client selectedClient) {
-		if (this.selectedClient != null) { // vrai si un client est actuellement sélectionné
-			this.selectedClient.startTimer(); // on redémarre le timer du client actuellement sélectionné
-		} else { // vrai si aucun client n'est actuellement sélectionné
+		if (this.selectedClient == null) { // vrai si aucun client n'est actuellement sélectionné
 			this.selectedClient = selectedClient; // on sélectionne le nouveau client
-			selectedClient.stopTimer();           // on arrête son timer
+			selectedClient.pauseTimer();           // on arrête son timer
 		}
 	}
 	
 	/**
-	 * Ajoute un nouveau client à la file d'attente. Sélectionne ce client si selectedNewClient vaut true et lance son timer si gameStarted vaut
-	 * true.
+	 * Ajoute un nouveau client à la file d'attente. Lance son timer si gameStarted vaut true.
 	 *
-	 * @param selectNewClient,
-	 * 		si vaut true, sélectionne le nouveau client, sinon, ne fait rien.
 	 * @param gameStarted,
 	 * 		si vaut true, lance le timer du nouveau client, sinon, ne fait rien.
 	 */
-	private void addNewClientToQueue(boolean selectNewClient, boolean gameStarted) {
+	private void addNewClientToQueue(boolean gameStarted) {
 		if (waitingQueue.getChildren().size() < NB_MAX_CLIENTS) { // vrai si il y a moins de NB_MAX_CLIENTS dans la file d'attente
 			Client client = new Client(mainViewController);
 			waitingQueue.getChildren().add(client); // ajoute le client à la vue
 			
-			if (selectNewClient) {
-				setSelectedClient(client); // on sélectionne le client
-			}
 			if (gameStarted) {
 				client.startTimer(); // démarre le timer du nouveau client
 			}
+		}
+	}
+	
+	/**
+	 * Désélectionne le client actuellement sélectionné.
+	 */
+	public void unselectSelectedClient() {
+		if (selectedClient != null) {
+			selectedClient.startTimer();
+			selectedClient = null;
 		}
 	}
 	
@@ -115,7 +117,7 @@ public class ClientsManager {
 	}
 	
 	/**
-	 * Démarre le timer du clientManager (avant l'arrivée d'un nouveau client) ainsi que de tous les clients de la file d'attente (le temps avant
+	 * Démarre le timer du clientManager (avant l'arrivée d'un nouveau client) ainsi que de tout les clients de la file d'attente (le temps avant
 	 * qu'ils s'impatientent et partent fachés).
 	 */
 	public void startTimers() {
@@ -126,6 +128,20 @@ public class ClientsManager {
 		ObservableList<Client> children = (ObservableList) waitingQueue.getChildren();
 		for (Client c : children) {
 			c.startTimer(); // démarre le timer de chaque client
+		}
+	}
+	
+	/**
+	 * Arrête le timer du clientManager ainsi que ceux de tout les clients de la file d'attente.
+	 */
+	public void stopTimers() {
+		gameIsRunning = true;
+		timer.stop();
+		
+		// on cast tous les éléments de la waitingQueue en Client. Ne pose pas de problème car waitingQueue ne contient que des objets de type Client
+		ObservableList<Client> children = (ObservableList) waitingQueue.getChildren();
+		for (Client c : children) {
+			c.stopTimer(); // démarre le timer de chaque client
 		}
 	}
 }

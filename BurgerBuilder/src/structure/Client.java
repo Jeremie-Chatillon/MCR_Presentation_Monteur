@@ -87,12 +87,17 @@ public class Client extends VBox {
 		gameIsRunning = true;
 	}
 	
-	public void stopTimer(){
-		timer.stop();
+	public void pauseTimer() {
+		timer.pause();
 		gameIsRunning = true;
 	}
 	
-	public BurgerBuilder getNewBurgerBuilder(){
+	public void stopTimer(){
+		timer.stop();
+		gameIsRunning = false;
+	}
+	
+	public BurgerBuilder getNewBurgerBuilder() {
 		return menu.getBurgerBuilder();
 	}
 	

@@ -2,6 +2,8 @@ package controllers;
 
 import builder.BurgerBuilder;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,43 +15,52 @@ import structure.Client;
 import structure.Condiment;
 import structure.Menu;
 
-import static controllers.Rules.MAX_ANGRY_BAR;
-import static controllers.Rules.MAX_VAUMIT_BAR;
+import java.util.Optional;
 
+import static controllers.Rules.*;
 
+/**
+ * Contrôleur associé au fichier mainView.fxml. Gère l'ensemble du jeu et de sa GUI.
+ */
 public class MainViewController {
 	@FXML
-	private HBox waitingQueue;
+	private HBox waitingQueue; // La HBox contenant la file d'attente de clients
 	
 	@FXML
-	private VBox builderVBox;
+	private VBox builderVBox; // La VBox contenant le builder de burger
 	
 	@FXML
-	private VBox angryVBox;
+	private VBox angryVBox; // La VBox contenant la verticalProgressBar de colère des clients
 	
 	@FXML
-	private VBox vomitVBox;
+	private VBox vomitVBox; // La VBox contenant la verticalProgressBar de vmoit des clients
 	
 	@FXML
-	private VBox menuVBox;
+	private VBox menuVBox; // La VBox contenant le menu désiré par le client sur lequel l'utilsiateur a cliqué
 	
 	@FXML
-	private Label menuLabel;
+	private Label menuLabel; // Label affiché au dessus du menu désiré par le client sur lequel l'utilsiateur a cliqué
 	
 	@FXML
-	private Label cash;
+	private Label cash; // Label affichant l'argent restant au joueur
 	
-	private VerticalProgressBar vomitBar;
+	private VerticalProgressBar vomitBar; // la verticalProgressBar de vomit
 	
-	private VerticalProgressBar angryBar;
+	private VerticalProgressBar angryBar; // la verticalProgressBar de colère
 	
 	private BurgerBuilder burgerBuilder;
+	
 	private int nbVaumit;
-	private int nbHangry;
+	
+	private int nbAngry;
+	
 	private int nbCondiments;
 	
-	private ClientsManager clientsManager;
+	private ClientsManager clientsManager; // le manager de client gérant la file d'attente des clients
 	
+	/**
+	 * Méthode appelée par JavaFX et initialisant le contrôleur et le fichier FXML associé.
+	 */
 	@FXML
 	private void initialize() {
 		vomitBar = new VerticalProgressBar(80, 400, MAX_VAUMIT_BAR);
@@ -57,11 +68,14 @@ public class MainViewController {
 		
 		vomitVBox.getChildren().add(vomitBar.getProgressHolder());
 		angryVBox.getChildren().add(angryBar.getProgressHolder());
-		
-		clientsManager = new ClientsManager(waitingQueue, this);
-		clientsManager.startTimers();
 	}
 	
+	/**
+	 * Méthode appelée par JavaFX lorsque l'utilisateur appuie sur une touche du clavier.
+	 *
+	 * @param event,
+	 * 		l'évènement généré par l'appui sur une touche du clavier par l'utilisateur
+	 */
 	@FXML
 	private void handleOnKeyPressed(KeyEvent event) {
 		switch (event.getCode()) {
@@ -107,6 +121,9 @@ public class MainViewController {
 		}
 	}
 	
+	/**
+	 *
+	 */
 	@FXML
 	private void handleSauce() {
 		addCondiment(Condiment.SAUCE);
@@ -164,7 +181,7 @@ public class MainViewController {
 	
 	@FXML
 	public void handleCancel() {
-
+		clientsManager.unselectSelectedClient();
 		resetBuilderAndView();
 	}
 	
@@ -173,10 +190,12 @@ public class MainViewController {
 		if (burgerBuilder != null) {
 			// fixme: ce try catch devrait être fait dans la classe client je dirais...
 			try {
-				Burger burger = burgerBuilder.build();
-				updateCashValue(getCashValue() + burger.getPrice());
-				clientsManager.removeSelectedClient();
-				resetBuilderAndView();
+				if (!burgerBuilder.burgerIsEmpty()) {
+					Burger burger = burgerBuilder.build();
+					updateCashValue(getCashValue() + burger.getPrice());
+					clientsManager.removeSelectedClient();
+					resetBuilderAndView();
+				}
 			} catch (IllegalArgumentException e) {
 				aClientVomitedAndLeave();
 				resetBuilderAndView();
@@ -195,14 +214,57 @@ public class MainViewController {
 	}
 	
 	public void anAngryClientLeave(Client client) {
+		nbAngry++;
 		angryBar.addToValue();
 		clientsManager.removeClient(client);
 		//resetBuilderAndView();				//FIXME: Pas besoin de supprimer
+		
+		if (nbAngry >= MAX_ANGRY_BAR) {
+			showLooseAlert("Trop de client en colère ont quitté votre restaurant!");
+		}
 	}
 	
 	public void aClientVomitedAndLeave() {
+		nbVaumit++;
 		vomitBar.addToValue();
 		clientsManager.removeSelectedClient();
+		
+		if (nbVaumit >= MAX_VAUMIT_BAR) {
+			showLooseAlert("Trop de client ont reçu une mauvaise commande et ont quitté votre restaurant en vaumissant!");
+		}
+	}
+	
+	public void startGame() {
+		cash.setText(String.valueOf(START_MONNEY));
+		clientsManager = new ClientsManager(waitingQueue, this);
+		clientsManager.startTimers();
+	}
+	
+	private void showLooseAlert(String message) {
+		stopGame();
+		waitingQueue.getChildren().clear();
+		nbVaumit = 0;
+		nbAngry = 0;
+		
+		// Ouvre une boite de dialogue annonçant la fin de la partie
+		Alert alert = new Alert(Alert.AlertType.NONE);
+		alert.setTitle("BurgerBuilder");
+		alert.setHeaderText("Vous avez perdu!");
+		alert.setContentText(message);
+		
+		ButtonType buttonTypeOne = new ButtonType("Rejouer"); // ajoute un bouton "Rejouer" à la boite de dialogue
+		alert.getButtonTypes().add(buttonTypeOne);
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == buttonTypeOne) {
+			vomitBar.reset();
+			angryBar.reset();
+			resetBuilderAndView();
+			startGame(); // démarre le jeu lorsqu'on clique sur le bouton de la boite de dialogue
+		}
+	}
+	
+	private void stopGame() {
+		clientsManager.stopTimers();
 	}
 	
 	private int getCashValue() {

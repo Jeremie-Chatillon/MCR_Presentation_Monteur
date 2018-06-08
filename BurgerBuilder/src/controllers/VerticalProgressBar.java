@@ -53,7 +53,7 @@ public class VerticalProgressBar {
 						new KeyValue(progressBar.progressProperty(), oldValue)
 				),
 				new KeyFrame(
-						Duration.seconds(2),
+						Duration.seconds(1),
 						new KeyValue(progressBar.progressProperty(), newValue)
 				)
 		);
@@ -79,7 +79,7 @@ public class VerticalProgressBar {
 						new KeyValue(progressBar.progressProperty(), oldValue)
 				),
 				new KeyFrame(
-						Duration.seconds(2),
+						Duration.seconds(1),
 						new KeyValue(progressBar.progressProperty(), newValue)
 				)
 		);
@@ -87,6 +87,15 @@ public class VerticalProgressBar {
 		oldValue = newValue;
 		newValue = oldValue + increment;
 		
-		timer.playFromStart(); // on démarre le timer -> anime le remplissage de la verticalProgressBar
+		timer.play(); // on démarre le timer -> anime le remplissage de la verticalProgressBar
+	}
+	
+	/**
+	 * Réinitialise la ProgressBar.
+	 */
+	public void reset(){
+		oldValue = 0;
+		newValue = oldValue + increment;
+		progressBar.setProgress(0);
 	}
 }

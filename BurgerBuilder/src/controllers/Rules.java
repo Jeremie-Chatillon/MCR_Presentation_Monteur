@@ -1,5 +1,8 @@
 package controllers;
 
+/**
+ * Classe contenant les divers réglages du programme.
+ */
 public class Rules {
 	public static final int NB_MAX_CLIENTS = 6;
     public static final int START_MONNEY = 100;

@@ -6,6 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Classe principale du programme.
+ */
 public class Main extends Application {
 	
 	@Override
@@ -20,7 +23,11 @@ public class Main extends Application {
 		primaryStage.show();
 	}
 	
-	
+	/**
+	 * Fonction main. Lance l'exécution du programme.
+	 *
+	 * @param args, arguments passés au programme.
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

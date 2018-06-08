@@ -12,78 +12,120 @@ import java.util.Random;
 
 import static controllers.Rules.*;
 
+/**
+ * Classe implémentant la gestion et l'affichage de la file d'attente des clients.
+ */
 public class ClientsManager {
-	private MainViewController mainViewController;
+	private MainViewController mainViewController; // référence vers l'instance du mainViewController
 	
+	private Random random = new Random();
 	private HBox waitingQueue;
 	private Client selectedClient;
-	private Timeline timer;
 	private int remainingTime;
-	private Random random = new Random();
-	private boolean gameIsRunning = false;
+	private boolean gameIsRunning = false; // vaut true lorsqu'une partie est en cours, false sinon
+	private Timeline timer;
 	
+	/**
+	 * Construit un ClientsManager gérant la waitingQueue passée en paramètre et appelant des méthodes du mainViewController également passé en
+	 * paramètre.
+	 *
+	 * @param waitingQueue,
+	 * 		la HBox à gérer.
+	 * @param mainViewController,
+	 * 		une référence vers le mainViewController.
+	 */
 	public ClientsManager(HBox waitingQueue, MainViewController mainViewController) {
 		this.mainViewController = mainViewController;
 		this.waitingQueue = waitingQueue;
-		addNewClientToQueue(true, gameIsRunning);
-		remainingTime = 5000;
+		addNewClientToQueue(true, gameIsRunning); // on ajoute un client à la file d'attente
+		remainingTime = 5000; // le 2ème client arrive après 5 secondes
 		
 		timer = new Timeline(new KeyFrame(
 				Duration.millis(250),
 				event -> {
 					remainingTime -= 250;
-					
-					if (remainingTime <= 0) {
-						System.out.println("Un nouveau client est arrivé dans la queue!");
-						addNewClientToQueue(false, gameIsRunning);
-						remainingTime = random.nextInt(NB_MS_MAX_BEFORE_NEW_CLIENT - NB_MS_MIN_BEFORE_NEW_CLIENT) + NB_MS_MIN_BEFORE_NEW_CLIENT;
-						System.out.println(remainingTime);
+					if (remainingTime <= 0) { // le timer s'est écoulé
+						addNewClientToQueue(false, gameIsRunning); // on ajoute un client à la file d'attente
 						
+						// on défini aléatoirement un temps entre NB_MS_MIN_BEFORE_NEW_CLIENT et NB_MS_MAX_BEFORE_NEW_CLIENT ms devant s'écouler
+						// avant l'apparition du prochain client.
+						remainingTime = random.nextInt(NB_MS_MAX_BEFORE_NEW_CLIENT - NB_MS_MIN_BEFORE_NEW_CLIENT) + NB_MS_MIN_BEFORE_NEW_CLIENT;
 					}
 				}
 		));
-		timer.setCycleCount(Animation.INDEFINITE);
+		timer.setCycleCount(Animation.INDEFINITE); // le timer boucle à l'infini
 	}
 	
+	/**
+	 * Permet de sélectionner le client passé en paramètre afin de réaliser sa commande.
+	 *
+	 * @param selectedClient,
+	 * 		le client à sélectionner.
+	 */
 	public void setSelectedClient(Client selectedClient) {
-		if(this.selectedClient != null) {
-			this.selectedClient.startTimer();     // on redémarre le timer du client actuellement sélectionné
+		if (this.selectedClient != null) { // vrai si un client est actuellement sélectionné
+			this.selectedClient.startTimer(); // on redémarre le timer du client actuellement sélectionné
+		} else { // vrai si aucun client n'est actuellement sélectionné
+			this.selectedClient = selectedClient; // on sélectionne le nouveau client
+			selectedClient.stopTimer();           // on arrête son timer
 		}
-
-		this.selectedClient = selectedClient; // on sélectionne le nouveau client
-		selectedClient.stopTimer();           // on arrête son timer
 	}
 	
+	/**
+	 * Ajoute un nouveau client à la file d'attente. Sélectionne ce client si selectedNewClient vaut true et lance son timer si gameStarted vaut
+	 * true.
+	 *
+	 * @param selectNewClient,
+	 * 		si vaut true, sélectionne le nouveau client, sinon, ne fait rien.
+	 * @param gameStarted,
+	 * 		si vaut true, lance le timer du nouveau client, sinon, ne fait rien.
+	 */
 	private void addNewClientToQueue(boolean selectNewClient, boolean gameStarted) {
-		if (waitingQueue.getChildren().size() < NB_MAX_CLIENTS) {
+		if (waitingQueue.getChildren().size() < NB_MAX_CLIENTS) { // vrai si il y a moins de NB_MAX_CLIENTS dans la file d'attente
 			Client client = new Client(mainViewController);
-			waitingQueue.getChildren().add(client);
+			waitingQueue.getChildren().add(client); // ajoute le client à la vue
 			
 			if (selectNewClient) {
-				selectedClient = client;
+				setSelectedClient(client); // on sélectionne le client
 			}
 			if (gameStarted) {
-				client.startTimer();
+				client.startTimer(); // démarre le timer du nouveau client
 			}
 		}
 	}
 	
+	/**
+	 * Supprime le client actuellement sélectionné de la file d'attente.
+	 */
 	public void removeSelectedClient() {
 		removeClient(selectedClient);
 	}
 	
+	/**
+	 * Supprime le client reçu en paramètre de la file d'attente.
+	 *
+	 * @param client,
+	 * 		le client à supprimer de la file d'attente.
+	 */
 	public void removeClient(Client client) {
 		waitingQueue.getChildren().remove(client);
-
-		System.err.println(waitingQueue.getChildren().size());	//FIXME
+		
+		// FIXME: C'est quoi le problème?
+		System.err.println(waitingQueue.getChildren().size()); //FIXME
 	}
 	
+	/**
+	 * Démarre le timer du clientManager (avant l'arrivée d'un nouveau client) ainsi que de tous les clients de la file d'attente (le temps avant
+	 * qu'ils s'impatientent et partent fachés).
+	 */
 	public void startTimers() {
 		gameIsRunning = true;
 		timer.play();
+		
+		// on cast tous les éléments de la waitingQueue en Client. Ne pose pas de problème car waitingQueue ne contient que des objets de type Client
 		ObservableList<Client> children = (ObservableList) waitingQueue.getChildren();
 		for (Client c : children) {
-			c.startTimer();
+			c.startTimer(); // démarre le timer de chaque client
 		}
 	}
 }

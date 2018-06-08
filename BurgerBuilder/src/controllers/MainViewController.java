@@ -164,7 +164,7 @@ public class MainViewController {
 	
 	@FXML
 	public void handleCancel() {
-		
+
 		resetBuilderAndView();
 	}
 	

@@ -101,6 +101,7 @@ public class ClientsManager {
 	 */
 	public void removeSelectedClient() {
 		removeClient(selectedClient);
+		selectedClient = null;
 	}
 	
 	/**

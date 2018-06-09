@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import structure.Burger;
 import structure.Client;
 import structure.Condiment;
@@ -385,7 +386,7 @@ public class MainViewController {
 	 * 		le condiment à ajouter au burger.
 	 */
 	private void addCondiment(Condiment c) {
-		if (burgerBuilder != null && nbCondiments < 10) {
+		if (burgerBuilder != null && nbCondiments < NB_MAX_CONDIMENT) {
 			nbCondiments++;
 			updateCashValue(getCashValue() - c.getPrice());
 			burgerBuilder.addCondiment(c);
@@ -401,8 +402,10 @@ public class MainViewController {
 	 */
 	private void addCondimentImageToBurgerBuilderView(Image image) {
 		final ImageView imv = new ImageView();
-		imv.setFitHeight(100);
-		imv.setFitWidth(200);
+		double imgHeight = builderVBox.getHeight() / NB_MAX_CONDIMENT;
+		double imgWidth = imgHeight * 2;
+		imv.setFitHeight(imgHeight);
+		imv.setFitWidth(imgWidth);
 		imv.setImage(image);
 		
 		builderVBox.getChildren().add(imv);
@@ -425,13 +428,15 @@ public class MainViewController {
 	/**
 	 * Réinitialise l'affichage du menu à la gauche de la GUI.
 	 */
-	private void resetMenuView(){
+	private void resetMenuView() {
 		menuVBox.getChildren().clear();
 	}
 	
 	/**
 	 * Met à jour le menu à gauche de la GUI. Affiche le burger exemple du burger désiré par le client passé en paramètre.
-	 * @param client, le client dont on souhaite afficher le burger commandé.
+	 *
+	 * @param client,
+	 * 		le client dont on souhaite afficher le burger commandé.
 	 */
 	private void updateMenuView(Client client) {
 		Menu wantedMenu = client.getMenu();

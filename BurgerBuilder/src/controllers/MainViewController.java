@@ -45,19 +45,32 @@ public class MainViewController {
 	@FXML
 	private Label cash; // Label affichant l'argent restant au joueur
 	
+	@FXML
+	private Label labelNbClientsDelivred; // Label affichant le nombre de clients qui sont repartis à temps avec la commande qu'ils souhaitaient
+	
+	@FXML
+	private Label labelNbClientsVomited; // Label affichant le nombre de clients qui ont reçu la mauvaise commande et l'ont vomie
+	
+	@FXML
+	private Label labelNbClientsAngry; // Label affichant le nombre de clients qui n'ont pas été servis à temps
+	
 	private VerticalProgressBar vomitBar; // la verticalProgressBar de vomit
 	
 	private VerticalProgressBar angryBar; // la verticalProgressBar de colère
 	
 	private BurgerBuilder burgerBuilder;
 	
-	private int nbVaumit;
 	
-	private int nbAngry;
+	private int nbCondiments = 0;
 	
-	private int nbCondiments;
+	private int nbClientsDelivred = 0; // nombre de clients qui sont repartis à temps avec la commande qu'ils souhaitaient
+	
+	private int nbClientsVomited = 0; // nombre de clients qui ont reçu la mauvaise commande et l'ont vomie
+	
+	private int nbClientsAngry = 0; // nombre de clients qui n'ont pas été servis à temps
 	
 	private ClientsManager clientsManager; // le manager de client gérant la file d'attente des clients
+	
 	
 	/**
 	 * Méthode appelée par JavaFX et initialisant le contrôleur et le fichier FXML associé.
@@ -233,7 +246,8 @@ public class MainViewController {
 	}
 	
 	/**
-	 * Méthode appelé par JavaFX lorsque l'utilisateur clique sur le bouton <b>Annuler la commande</b> ou sur la touche du clavier correspondante.
+	 * Méthode appelé par JavaFX lorsque l'utilisateur clique sur le bouton <b>Annuler la commande</b>, sur la touche du clavier correspondante ou
+	 * sur le menu Builder -> Annuler la commande.
 	 * Réinitialise le burgerBuilder et désélectionne le client actuellement sélectionné.
 	 */
 	@FXML
@@ -257,6 +271,7 @@ public class MainViewController {
 					Burger burger = burgerBuilder.build();
 					updateCashValue(getCashValue() + burger.getPrice());
 					clientsManager.removeSelectedClient();
+					labelNbClientsDelivred.setText(String.valueOf(++nbClientsDelivred));
 				}
 			} catch (IllegalArgumentException e) {
 				aClientVomitedAndLeave();
@@ -282,6 +297,47 @@ public class MainViewController {
 	}
 	
 	/**
+	 * Méthode appelée par JavaFX lorsque l'utilisateur clique sur le menu Fichier -> Quitter.
+	 * Quitte le programme.
+	 */
+	@FXML
+	private void handleQuit() {
+		Stage stage = (Stage) builderVBox.getScene().getWindow();
+		stage.close(); // ferme la fenêtre
+	}
+	
+	
+	/**
+	 * Méthode appelée par JavaFX lorsque l'utilisateur clique sur le menu Aide -> Règles du jeu.
+	 * Ouvre une fenêtre affichant les règles du jeu et mettant le jeu en pause.
+	 */
+	@FXML
+	private void handleHelp() {
+		pauseGame();
+		
+		// Ouvre une boite de dialogue affichant les règles
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("BurgerBuilder");
+		alert.setHeaderText("Règles du jeu");
+		alert.setContentText("Le but du jeu est de servir autant de client que possible afin que votre restaurant de burger fasse fortune !" +
+				"\nMais attention! Si vous tardez trop à servir un client, il s'en ira en colère, et si vous lui ne donnez pas ce qu'il demande, " +
+				"il vomira!\nDans les deux cas, la jauge correspondante augmentera. Remplissez une des deux jauge et c'est perdu !" +
+				"\nAttention également à ne pas gaspiller les condiments. Ceux-ci vous coutent et si le cash de votre restaurant arrive à 0, ça sera" +
+				" la faillite! \n\n" +
+				"Utilisez les touches du clavier pour jouer. Les touches numérotées vous permettent de sélectionner le client que vous souhaitez " +
+				"servir. \n La touche Enter livre le burger au client.\nEffacer supprime le burger actuel.\nAppuyez sur la touche correspondante au " +
+				"condiment que vous souhaitez ajouter à votre burger. ATTENTION! L'ordre des condiments est important!");
+		
+		ButtonType buttonTypeOne = new ButtonType("C'est compris"); // ajoute un bouton "C'est compris" à la boite de dialogue
+		alert.getButtonTypes().clear();
+		alert.getButtonTypes().add(buttonTypeOne);
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == buttonTypeOne) {
+			continueGame(); // relance le jeu là où il avit été interrompu lorsqu'on clique sur le bouton de la boite de dialogue
+		}
+	}
+	
+	/**
 	 * Méthode appelée lorsqu'un client s'impatiente (à la fin de son timer) et quitte le restaurant en colère sans avoir reçu sa commande. Incrémente
 	 * la jauge de colère des clients. Si la jauge devient pleine, la partie est perdue.
 	 *
@@ -289,11 +345,12 @@ public class MainViewController {
 	 * 		le client impatient qui quitte le restaurant en colère.
 	 */
 	public void anAngryClientLeave(Client client) {
-		nbAngry++;
+		nbClientsAngry++;
+		labelNbClientsAngry.setText(String.valueOf(nbClientsAngry));
 		angryBar.addToValue();
 		clientsManager.removeClient(client);
 		
-		if (nbAngry >= MAX_ANGRY_BAR) {
+		if (nbClientsAngry >= MAX_ANGRY_BAR) {
 			showLooseAlert("Trop de client en colère ont quitté votre restaurant!");
 		}
 	}
@@ -304,11 +361,12 @@ public class MainViewController {
 	 * payer, vomit, et incrémente la jauge de vomit des clients. Si la jauge devient pleine, la partie est perdue.
 	 */
 	public void aClientVomitedAndLeave() {
-		nbVaumit++;
+		++nbClientsVomited;
+		labelNbClientsVomited.setText(String.valueOf(nbClientsVomited));
 		vomitBar.addToValue();
 		clientsManager.removeSelectedClient();
 		
-		if (nbVaumit >= MAX_VAUMIT_BAR) {
+		if (nbClientsVomited >= MAX_VAUMIT_BAR) {
 			showLooseAlert("Trop de client ont reçu une mauvaise commande et ont quitté votre restaurant en vaumissant!");
 		}
 	}
@@ -332,14 +390,19 @@ public class MainViewController {
 	private void showLooseAlert(String message) {
 		stopGame();
 		waitingQueue.getChildren().clear();
-		nbVaumit = 0;
-		nbAngry = 0;
 		
 		// Ouvre une boite de dialogue annonçant la fin de la partie
 		Alert alert = new Alert(Alert.AlertType.NONE);
 		alert.setTitle("BurgerBuilder");
 		alert.setHeaderText("Vous avez perdu!");
-		alert.setContentText(message);
+		alert.setContentText(message +
+				"\nArgent restant : " + cash.getText() +
+				"\nNombre de clients servis : " + nbClientsDelivred +
+				"\nNombre de clients ayant vomi : " + nbClientsVomited +
+				"\nNombre de clients n'ayant pas été servis à temps : " + nbClientsAngry);
+		
+		nbClientsVomited = 0;
+		nbClientsAngry = 0;
 		
 		ButtonType buttonTypeOne = new ButtonType("Rejouer"); // ajoute un bouton "Rejouer" à la boite de dialogue
 		alert.getButtonTypes().add(buttonTypeOne);
@@ -351,6 +414,21 @@ public class MainViewController {
 			resetMenuView();
 			startGame(); // démarre le jeu lorsqu'on clique sur le bouton de la boite de dialogue
 		}
+	}
+	
+	/**
+	 * Met en pause la partie en arrêant temporairement tous les timers.
+	 */
+	private void pauseGame() {
+		clientsManager.pauseTimers();
+	}
+	
+	
+	/**
+	 * Relance la partie là où elle a été interrompue en redémarrant tous les timers.
+	 */
+	private void continueGame() {
+		clientsManager.startTimers();
 	}
 	
 	/**
@@ -377,6 +455,10 @@ public class MainViewController {
 	 */
 	private void updateCashValue(int newCashValue) {
 		cash.setText(String.valueOf(newCashValue));
+		if (newCashValue <= 0) {
+			cash.setText("0");
+			showLooseAlert("Votre restaurant n'a plus d'argent! Vous avez perdu!");
+		}
 	}
 	
 	/**
@@ -388,9 +470,9 @@ public class MainViewController {
 	private void addCondiment(Condiment c) {
 		if (burgerBuilder != null && nbCondiments < NB_MAX_CONDIMENT) {
 			nbCondiments++;
-			updateCashValue(getCashValue() - c.getPrice());
 			burgerBuilder.addCondiment(c);
 			addCondimentImageToBurgerBuilderView(c.getImage());
+			updateCashValue(getCashValue() - c.getPrice());
 		}
 	}
 	

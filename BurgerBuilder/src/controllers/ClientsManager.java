@@ -112,9 +112,6 @@ public class ClientsManager {
 	 */
 	public void removeClient(Client client) {
 		waitingQueue.getChildren().remove(client);
-		
-		// FIXME: C'est quoi le problème?
-		System.err.println(waitingQueue.getChildren().size()); //FIXME
 	}
 	
 	/**
@@ -135,8 +132,22 @@ public class ClientsManager {
 	/**
 	 * Arrête le timer du clientManager ainsi que ceux de tout les clients de la file d'attente.
 	 */
+	public void pauseTimers() {
+		gameIsRunning = false;
+		timer.pause();
+		
+		// on cast tous les éléments de la waitingQueue en Client. Ne pose pas de problème car waitingQueue ne contient que des objets de type Client
+		ObservableList<Client> children = (ObservableList) waitingQueue.getChildren();
+		for (Client c : children) {
+			c.pauseTimer(); // démarre le timer de chaque client
+		}
+	}
+	
+	/**
+	 * Arrête le timer du clientManager ainsi que ceux de tout les clients de la file d'attente.
+	 */
 	public void stopTimers() {
-		gameIsRunning = true;
+		gameIsRunning = false;
 		timer.stop();
 		
 		// on cast tous les éléments de la waitingQueue en Client. Ne pose pas de problème car waitingQueue ne contient que des objets de type Client

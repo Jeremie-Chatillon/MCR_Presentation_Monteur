@@ -11,19 +11,19 @@
 	<top>
 		<MenuBar style="-fx-background-color: #cdcdcd; -fx-border-color: #ababab;" BorderPane.alignment="CENTER">
 			<menus>
-				<Menu mnemonicParsing="false" text="File">
+				<Menu mnemonicParsing="false" text="Fichier">
 					<items>
-						<MenuItem mnemonicParsing="false" text="Close" />
+						<MenuItem mnemonicParsing="false" onAction="#handleQuit" onMenuValidation="#handleQuit" text="Quitter" />
 					</items>
 				</Menu>
-				<Menu mnemonicParsing="false" text="Edit">
+				<Menu mnemonicParsing="false" text="Builder">
 					<items>
-						<MenuItem mnemonicParsing="false" text="Delete" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleCancel" onMenuValidation="#handleCancel" text="Annuler la commande" />
 					</items>
 				</Menu>
-				<Menu mnemonicParsing="false" text="Help">
+				<Menu mnemonicParsing="false" text="Aide">
 					<items>
-						<MenuItem mnemonicParsing="false" text="About" />
+						<MenuItem mnemonicParsing="false" onAction="#handleHelp" onMenuValidation="#handleHelp" text="Règles du jeu" />
 					</items>
 				</Menu>
 			</menus>
@@ -196,23 +196,44 @@
 		</ToolBar>
 	</left>
 	<right>
-		<VBox alignment="TOP_CENTER" prefWidth="150.0" style="-fx-background-color: #cdcdcd;" BorderPane.alignment="CENTER">
+		<VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="5.0" style="-fx-background-color: #cdcdcd;" BorderPane.alignment="CENTER">
 			<children>
 				<Label text="Argent disponible">
 					<VBox.margin>
 						<Insets bottom="10.0" top="10.0" />
 					</VBox.margin>
 				</Label>
-				<HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="200.0" spacing="5.0">
+				<HBox alignment="TOP_CENTER" prefHeight="70.0" prefWidth="200.0" spacing="5.0">
 					<children>
-						<Label fx:id="cash" text="500" />
-						<Label text="CHF" />
+						<Label fx:id="cash" text="500">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Label>
+						<Label text="CHF">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
 					</children>
 					<VBox.margin>
 						<Insets />
 					</VBox.margin>
 				</HBox>
-				<HBox fx:id="ProgressBarHBox" alignment="BOTTOM_CENTER" prefHeight="0.0" prefWidth="150.0" VBox.vgrow="ALWAYS" />
+            <Label text="Clients servis :" />
+            <Label fx:id="labelNbClientsDelivred" text="0" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></Label>
+            <Label text="Clients ayant vomit :" textAlignment="CENTER" wrapText="true" />
+            <Label fx:id="labelNbClientsVomited" text="0" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></Label>
+            <Label text="Clients partis avant d'être servis :" textAlignment="CENTER" wrapText="true" />
+            <Label fx:id="labelNbClientsAngry" text="0" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></Label>
+            <Pane prefWidth="150.0" VBox.vgrow="ALWAYS" />
 			</children>
 		</VBox>
 	</right>

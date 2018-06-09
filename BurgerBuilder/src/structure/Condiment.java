@@ -22,7 +22,7 @@ public enum Condiment {
 	
 	private int price;
 	
-	private Image img;
+	private Image img; // l'image permettant d'afficher le condiment dans la GUI
 	
 	/**
 	 * Construit un condiment avec le nom, le prix et le chemin jusq'à l'image du condiment reçus en paramètres.

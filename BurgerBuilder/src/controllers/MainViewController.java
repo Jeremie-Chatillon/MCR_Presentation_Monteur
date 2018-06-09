@@ -301,9 +301,6 @@ public class MainViewController {
 	 * Méthode appelée lorsque le joueur livre à un client un burger incorrect. Un burger est considéré incorrect si ses composants ne contiennent pas
 	 * exactement les mêmes que ceux du burger type du menu et qu'ils ne sont pas exactement dans le même ordre. Le client quitte le restaurant sans
 	 * payer, vomit, et incrémente la jauge de vomit des clients. Si la jauge devient pleine, la partie est perdue.
-	 *
-	 * @param client,
-	 * 		le client à qui le joueur a livré un burger incorrect.
 	 */
 	public void aClientVomitedAndLeave() {
 		nbVaumit++;

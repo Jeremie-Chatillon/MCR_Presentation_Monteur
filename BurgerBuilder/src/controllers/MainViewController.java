@@ -2,13 +2,15 @@ package controllers;
 
 import builder.BurgerBuilder;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import structure.*;
@@ -22,7 +24,7 @@ import static structure.Rules.*;
  */
 public class MainViewController {
 	@FXML
-	private HBox waitingQueue; // La HBox contenant la file d'attente de clients
+	private GridPane waitingQueue; // La HBox contenant la file d'attente de clients
 	
 	@FXML
 	private VBox builderVBox; // La VBox contenant le builder de burger
@@ -78,6 +80,19 @@ public class MainViewController {
 		
 		vomitVBox.getChildren().add(vomitBar.getProgressHolder());
 		angryVBox.getChildren().add(angryBar.getProgressHolder());
+		
+		for (Integer x = 0; x < NB_MAX_CLIENTS; x++) {
+			//for (int y = 0; y < 1; y++){
+			ColumnConstraints cul = new ColumnConstraints(100);
+			
+			cul.setHalignment(HPos.CENTER);
+			Label label = new Label(Integer.toString(x + 1));
+			waitingQueue.getColumnConstraints().add(cul);
+			waitingQueue.add(label, x, 0);
+			//}
+		}
+		waitingQueue.getColumnConstraints().add(new ColumnConstraints(30)); // column 0 is 100 wide
+		waitingQueue.getColumnConstraints().add(new ColumnConstraints(100)); // column 1 is 200 wide
 	}
 	
 	/**
@@ -88,46 +103,53 @@ public class MainViewController {
 	 */
 	@FXML
 	private void handleOnKeyPressed(KeyEvent event) {
-		switch (event.getCode()) {
-			case A:
-				handleSauce();
-				break;
-			case B:
-				handleLettuce();
-				break;
-			case C:
-				handleOgnon();
-				break;
-			case D:
-				handlePickle();
-				break;
-			case E:
-				handleCheese();
-				break;
-			case F:
-				handleTomatoe();
-				break;
-			case G:
-				handleFish();
-				break;
-			case H:
-				handleChicken();
-				break;
-			case I:
-				handleBeef();
-				break;
-			case J:
-				handleBreadTop();
-				break;
-			case K:
-				handleBreadBot();
-				break;
-			case ENTER:
-				handleDeliver();
-				break;
-			case BACK_SPACE:
-				handleCancel();
-				break;
+		if (event.getCode().isDigitKey()) {
+			String s = event.getText();
+			char c = s.charAt(0);
+			selectClient(Character.getNumericValue(c));
+		} else {
+			
+			switch (event.getCode()) {
+				case A:
+					handleSauce();
+					break;
+				case B:
+					handleLettuce();
+					break;
+				case C:
+					handleOgnon();
+					break;
+				case D:
+					handlePickle();
+					break;
+				case E:
+					handleCheese();
+					break;
+				case F:
+					handleTomatoe();
+					break;
+				case G:
+					handleFish();
+					break;
+				case H:
+					handleChicken();
+					break;
+				case I:
+					handleBeef();
+					break;
+				case J:
+					handleBreadTop();
+					break;
+				case K:
+					handleBreadBot();
+					break;
+				case ENTER:
+					handleDeliver();
+					break;
+				case BACK_SPACE:
+					handleCancel();
+					break;
+			}
 		}
 	}
 	
@@ -248,7 +270,6 @@ public class MainViewController {
 	 */
 	@FXML
 	public void handleCancel() {
-		clientsManager.unselectSelectedClient();
 		resetMenuView();
 		resetBurgerBuilder();
 	}
@@ -327,6 +348,20 @@ public class MainViewController {
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == buttonTypeOne) {
 			continueGame(); // relance le jeu là où il avit été interrompu lorsqu'on clique sur le bouton de la boite de dialogue
+		}
+	}
+	
+	private void selectClient(int i) {
+		/*
+		if(i > NB_MAX_CLIENTS || i == 0 || burgerBuilder != null){
+			return;
+		}
+		*/
+		if (i <= NB_MAX_CLIENTS && i > 0 && burgerBuilder == null) {
+			--i;
+			
+			Client c = clientsManager.selectClient(i);
+			handleCustomer(c);
 		}
 	}
 	
@@ -495,6 +530,7 @@ public class MainViewController {
 		if (burgerBuilder != null) {
 			burgerBuilder.reset();
 			burgerBuilder = null;
+			clientsManager.unselectSelectedClient();
 		}
 		nbCondiments = 0;
 		builderVBox.getChildren().clear();

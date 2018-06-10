@@ -1,4 +1,4 @@
-package controllers;
+package structure;
 
 /**
  * Classe contenant les divers réglages du programme.

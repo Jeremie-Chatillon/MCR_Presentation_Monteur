@@ -15,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-import static controllers.Rules.NB_MAX_MS_CLIENT_WAITING;
+import static structure.Rules.NB_MAX_MS_CLIENT_WAITING;
 
 /**
  * Classe impémentant un client du restaurant. Hérite de la classe VBox de JavaFX afin qu'on puisse traiter un client comme un noeud JavaFX.

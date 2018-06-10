@@ -5,7 +5,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.LinkedList;
 
-import static controllers.Rules.CONDIMENT_BENEF;
+import static structure.Rules.CONDIMENT_BENEF;
 
 /**
  * Classe implémentant un burger.

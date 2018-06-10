@@ -10,7 +10,7 @@ import structure.Client;
 
 import java.util.Random;
 
-import static controllers.Rules.*;
+import static structure.Rules.*;
 
 /**
  * Classe implémentant la gestion et l'affichage de la file d'attente des clients.

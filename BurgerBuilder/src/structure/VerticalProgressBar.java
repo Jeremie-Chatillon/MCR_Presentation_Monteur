@@ -1,4 +1,4 @@
-package controllers;
+package structure;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;

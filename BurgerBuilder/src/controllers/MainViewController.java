@@ -11,14 +11,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import structure.Burger;
-import structure.Client;
-import structure.Condiment;
-import structure.Menu;
+import structure.*;
 
 import java.util.Optional;
 
-import static controllers.Rules.*;
+import static structure.Rules.*;
 
 /**
  * Contrôleur associé au fichier mainView.fxml. Gère l'ensemble du jeu et de sa GUI.

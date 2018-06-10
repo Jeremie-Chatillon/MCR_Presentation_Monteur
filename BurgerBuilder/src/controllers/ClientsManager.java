@@ -4,10 +4,14 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
+import jdk.internal.org.objectweb.asm.Label;
 import structure.Client;
 
+import java.util.Iterator;
 import java.util.Random;
 
 import static controllers.Rules.*;
@@ -22,8 +26,11 @@ public class ClientsManager {
 	private HBox waitingQueue;
 	private Client selectedClient;
 	private int remainingTime;
-	private boolean gameIsRunning = false; // vaut true lorsqu'une partie est en cours, false sinon
+	private boolean gameIsRunning = true; // vaut true lorsqu'une partie est en cours, false sinon
 	private Timeline timer;
+
+	private GridPane waitingPane;
+	private boolean tabUseClientGrid[];
 	
 	/**
 	 * Construit un ClientsManager gérant la waitingQueue passée en paramètre et appelant des méthodes du mainViewController également passé en
@@ -34,10 +41,13 @@ public class ClientsManager {
 	 * @param mainViewController,
 	 * 		une référence vers le mainViewController.
 	 */
-	public ClientsManager(HBox waitingQueue, MainViewController mainViewController) {
+	public ClientsManager(HBox waitingQueue, MainViewController mainViewController, GridPane waitingPane) {
+		this.waitingPane = waitingPane;
+		tabUseClientGrid = new boolean[NB_MAX_CLIENTS];
+
 		this.mainViewController = mainViewController;
 		this.waitingQueue = waitingQueue;
-		addNewClientToQueue(true, gameIsRunning); // on ajoute un client à la file d'attente
+		addNewClientToQueue(false, gameIsRunning); // on ajoute un client à la file d'attente
 		remainingTime = 5000; // le 2ème client arrive après 5 secondes
 		
 		timer = new Timeline(new KeyFrame(
@@ -55,6 +65,8 @@ public class ClientsManager {
 		));
 		timer.setCycleCount(Animation.INDEFINITE); // le timer boucle à l'infini
 	}
+
+
 	
 	/**
 	 * Permet de sélectionner le client passé en paramètre afin de réaliser sa commande.
@@ -70,6 +82,45 @@ public class ClientsManager {
 			selectedClient.stopTimer();           // on arrête son timer
 		}
 	}
+
+	public void unselectSelectedClient() {
+		if(selectedClient != null) {
+			this.selectedClient.startTimer();
+			this.selectedClient = null;
+		}
+
+	}
+
+
+	public Client selectClient(int i){
+
+		if(tabUseClientGrid[i] == false){
+			return null;
+		}
+
+		if (this.selectedClient != null) { // vrai si un client est actuellement sélectionné
+			// FIXME:: ça sert à quoi ce if?
+			this.selectedClient.startTimer(); // on redémarre le timer du client actuellement sélectionné
+			return null;
+
+		} else { // vrai si aucun client n'est actuellement sélectionné
+			System.out.println("OKAY2" + Integer.toString(i));
+			for (Node node : waitingPane.getChildren()) {
+				if (waitingPane.getRowIndex(node) == 1 && waitingPane.getColumnIndex(node) == i) {
+					if(node instanceof Client) {
+						this.selectedClient = (Client) node;
+						this.selectedClient.stopTimer();
+						return (Client) node;
+					} else {
+						return null;
+					}
+				}
+			}
+
+
+		}
+		return null;
+	}
 	
 	/**
 	 * Ajoute un nouveau client à la file d'attente. Sélectionne ce client si selectedNewClient vaut true et lance son timer si gameStarted vaut
@@ -81,10 +132,14 @@ public class ClientsManager {
 	 * 		si vaut true, lance le timer du nouveau client, sinon, ne fait rien.
 	 */
 	private void addNewClientToQueue(boolean selectNewClient, boolean gameStarted) {
-		if (waitingQueue.getChildren().size() < NB_MAX_CLIENTS) { // vrai si il y a moins de NB_MAX_CLIENTS dans la file d'attente
+
+		int i = findFreeClientSpace();
+		if (i != -1) {
+			tabUseClientGrid[i] = true;
 			Client client = new Client(mainViewController);
-			waitingQueue.getChildren().add(client); // ajoute le client à la vue
-			
+			waitingPane.add(client, i, 1);
+			tabUseClientGrid[i] = true;
+
 			if (selectNewClient) {
 				setSelectedClient(client); // on sélectionne le client
 			}
@@ -93,12 +148,26 @@ public class ClientsManager {
 			}
 		}
 	}
-	
+
+	/**
+	 * Cherche la première postion disponnible de la grid.
+	 * @return la première position y libre. Sinon il n'y en a pas, retourne -1
+	 */
+	private int findFreeClientSpace(){
+
+		for (int i = 0; i < NB_MAX_CLIENTS; ++i) {
+			if (tabUseClientGrid[i] == false)
+				return i;
+		}
+		return -1;
+	}
+
 	/**
 	 * Supprime le client actuellement sélectionné de la file d'attente.
 	 */
 	public void removeSelectedClient() {
 		removeClient(selectedClient);
+		unselectSelectedClient();
 	}
 	
 	/**
@@ -108,10 +177,12 @@ public class ClientsManager {
 	 * 		le client à supprimer de la file d'attente.
 	 */
 	public void removeClient(Client client) {
-		waitingQueue.getChildren().remove(client);
-		
-		// FIXME: C'est quoi le problème?
-		System.err.println(waitingQueue.getChildren().size()); //FIXME
+
+		int col = waitingPane.getColumnIndex(client);
+		tabUseClientGrid[col] = false;
+
+		waitingPane.getChildren().remove(client);
+
 	}
 	
 	/**

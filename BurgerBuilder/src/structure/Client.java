@@ -88,7 +88,7 @@ public class Client extends VBox {
 	}
 	
 	public void stopTimer(){
-		timer.stop();
+		timer.pause();
 		gameIsRunning = true;
 	}
 	

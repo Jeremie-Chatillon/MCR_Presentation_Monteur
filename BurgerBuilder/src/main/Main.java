@@ -26,8 +26,6 @@ public class Main extends Application {
 		primaryStage.setScene(scene);
 		
 		MainViewController mainViewController = fxmlLoaderMainViewController.getController();
-		
-		//primaryStage.getIcons().add(new Image("/images/BlaajjPaint.jpg")); //TODO: add icon
 		primaryStage.show();
 		
 		// Ouvre une boite de dialogue permettant de démarrer le jeu

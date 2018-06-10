@@ -21,7 +21,7 @@ public class ClientsManager {
 	private Random random = new Random();
 	private HBox waitingQueue;
 	private Client selectedClient;
-	private int remainingTime;
+	private int remainingTimeBeforeNewClient;
 	private boolean gameIsRunning = false; // vaut true lorsqu'une partie est en cours, false sinon
 	private Timeline timer;
 	
@@ -38,18 +38,18 @@ public class ClientsManager {
 		this.mainViewController = mainViewController;
 		this.waitingQueue = waitingQueue;
 		addNewClientToQueue(gameIsRunning); // on ajoute un client à la file d'attente
-		remainingTime = 5000; // le 2ème client arrive après 5 secondes
+		remainingTimeBeforeNewClient = 5000; // le 2ème client arrive après 5 secondes
 		
 		timer = new Timeline(new KeyFrame(
 				Duration.millis(250),
 				event -> {
-					remainingTime -= 250;
-					if (remainingTime <= 0) { // le timer s'est écoulé
+					remainingTimeBeforeNewClient -= 250;
+					if (remainingTimeBeforeNewClient <= 0) { // le timer s'est écoulé
 						addNewClientToQueue(gameIsRunning); // on ajoute un client à la file d'attente
 						
 						// on défini aléatoirement un temps entre NB_MS_MIN_BEFORE_NEW_CLIENT et NB_MS_MAX_BEFORE_NEW_CLIENT ms devant s'écouler
 						// avant l'apparition du prochain client.
-						remainingTime = random.nextInt(NB_MS_MAX_BEFORE_NEW_CLIENT - NB_MS_MIN_BEFORE_NEW_CLIENT) + NB_MS_MIN_BEFORE_NEW_CLIENT;
+						remainingTimeBeforeNewClient = random.nextInt(NB_MS_MAX_BEFORE_NEW_CLIENT - NB_MS_MIN_BEFORE_NEW_CLIENT) + NB_MS_MIN_BEFORE_NEW_CLIENT;
 					}
 				}
 		));

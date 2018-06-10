@@ -41,15 +41,6 @@ public enum Condiment {
 	}
 	
 	/**
-	 * Retourne le nom du consiment sous forme de String.
-	 *
-	 * @return une string, le nom du condiment
-	 */
-	public String getName() {
-		return name;
-	}
-	
-	/**
 	 * Retourne le prix à l'achat du condiment. Ce prix est débité de la caisse lorsque le condiment est utilisé dans un burger.
 	 *
 	 * @return le prix du condiment.

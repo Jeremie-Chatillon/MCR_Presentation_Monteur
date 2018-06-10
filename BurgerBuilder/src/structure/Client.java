@@ -22,8 +22,6 @@ import static structure.Rules.NB_MAX_MS_CLIENT_WAITING;
  */
 public class Client extends VBox {
 	
-	private MainViewController mainViewController; // référence vers l'instance du mainViewController
-	
 	// le Timeline animant la barre d'attente du client. Le client s'en va en colère lorsque la barre est vide et qu'il n'a toujours pas été servi.
 	private Timeline timer;
 	
@@ -44,8 +42,6 @@ public class Client extends VBox {
 	 */
 	public Client(MainViewController mainViewController) {
 		super();
-		this.mainViewController = mainViewController;
-		
 		menu = Menu.getOneRandomMenu(); // détermine aléatoirement le menu désiré par le client
 		
 		timerProgressBar = new ProgressBar();

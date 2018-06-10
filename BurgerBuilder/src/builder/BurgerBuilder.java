@@ -44,7 +44,7 @@ public abstract class BurgerBuilder {
 	}
 	
 	/**
-	 * Retourne vrai si le burger en construction dans le builder contient exactement les mêmes condiments (et dans le même ordre) que le burger
+	 * Retourne true si le burger en construction dans le builder contient exactement les mêmes condiments (et dans le même ordre) que le burger
 	 * exemple du menu, false sinon.
 	 *
 	 * @return

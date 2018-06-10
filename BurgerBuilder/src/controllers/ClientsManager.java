@@ -25,7 +25,8 @@ public class ClientsManager {
 	private int remainingTimeBeforeNewClient;
 	private boolean gameIsRunning = false; // vaut true lorsqu'une partie est en cours, false sinon
 	private Timeline timer;
-	private boolean tabUseClientGrid[];
+	private int nbClientsWaiting = 0; // nombre de clients actuellement dans la file d'ttente
+	private boolean tabIndexUsedByClientWaiting[]; // true à l'indice i indique qu'un client se trouve dans la case i de la file d'attente
 	
 	/**
 	 * Construit un ClientsManager gérant la waitingQueue passée en paramètre et appelant des méthodes du mainViewController également passé en
@@ -39,10 +40,9 @@ public class ClientsManager {
 	public ClientsManager(GridPane waitingQueue, MainViewController mainViewController) {
 		this.mainViewController = mainViewController;
 		this.waitingQueue = waitingQueue;
-		tabUseClientGrid = new boolean[NB_MAX_CLIENTS];
+		tabIndexUsedByClientWaiting = new boolean[NB_MAX_CLIENTS];
 		addNewClientToQueue(gameIsRunning); // on ajoute un client à la file d'attente
 		remainingTimeBeforeNewClient = 5000; // le 2ème client arrive après 5 secondes
-		
 		
 		timer = new Timeline(new KeyFrame(
 				Duration.millis(250),
@@ -53,7 +53,8 @@ public class ClientsManager {
 						
 						// on défini aléatoirement un temps entre NB_MS_MIN_BEFORE_NEW_CLIENT et NB_MS_MAX_BEFORE_NEW_CLIENT ms devant s'écouler
 						// avant l'apparition du prochain client.
-						remainingTimeBeforeNewClient = random.nextInt(NB_MS_MAX_BEFORE_NEW_CLIENT - NB_MS_MIN_BEFORE_NEW_CLIENT) + NB_MS_MIN_BEFORE_NEW_CLIENT;
+						remainingTimeBeforeNewClient = random.nextInt(NB_MS_MAX_BEFORE_NEW_CLIENT - NB_MS_MIN_BEFORE_NEW_CLIENT) +
+								NB_MS_MIN_BEFORE_NEW_CLIENT;
 					}
 				}
 		));
@@ -73,24 +74,38 @@ public class ClientsManager {
 		}
 	}
 	
-	public Client selectClient(int i) {
-		
-		if (tabUseClientGrid[i]) {
-			if (this.selectedClient == null) { // vrai si aucun client n'est actuellement sélectionné
-				for (Node node : waitingQueue.getChildren()) {
-					if (GridPane.getRowIndex(node) == 1 && GridPane.getColumnIndex(node) == i) {
-						if (node instanceof Client) {
-							this.selectedClient = (Client) node;
-							this.selectedClient.stopTimer();
-							return (Client) node;
-						} else {
-							return null;
-						}
+	/**
+	 * Retourne le client occupant la case de la file d'attente correspondant à la touche numérique sur laquelle l'utilisateur à pressé.
+	 *
+	 * @param i,
+	 * 		le numéro de la touche que l'utilisateur a pressé.
+	 *
+	 * @return le client correspondant.
+	 */
+	public Client getCorrespondingClient(int i) {
+		Client c = null;
+		if (tabIndexUsedByClientWaiting[i] && this.selectedClient == null) { // vrai si aucun client n'est actuellement sélectionné
+			for (Node node : waitingQueue.getChildren()) {
+				if (GridPane.getRowIndex(node) == 1 && GridPane.getColumnIndex(node) == i) {
+					if (node instanceof Client) {
+						c = (Client) node;
+						break;
+					} else {
+						break;
 					}
 				}
 			}
 		}
-		return null;
+		return c;
+	}
+	
+	/**
+	 * Retourne le nombre de clients qui se trouvent actuellement dans la file d'attente.
+	 *
+	 * @return le nombre de clients qui se trouvent actuellement dans la file d'atttente.
+	 */
+	public int getNbClientsWaiting() {
+		return nbClientsWaiting;
 	}
 	
 	/**
@@ -100,13 +115,12 @@ public class ClientsManager {
 	 * 		si vaut true, lance le timer du nouveau client, sinon, ne fait rien.
 	 */
 	private void addNewClientToQueue(boolean gameStarted) {
-		//if (waitingQueue.getChildren().size() < NB_MAX_CLIENTS) { // vrai si il y a moins de NB_MAX_CLIENTS dans la file d'attente
-		int i = findFreeClientSpace();
+		int i = findFreeIndexInWaitingQueue();
 		if (i != -1) {
-			tabUseClientGrid[i] = true;
 			Client client = new Client(mainViewController);
 			waitingQueue.add(client, i, 1);
-			tabUseClientGrid[i] = true;
+			tabIndexUsedByClientWaiting[i] = true; // on indique dans le tableau que la case du gridPane est maintenant occupée par un client
+			nbClientsWaiting++; // on augmente le nombre de client qui attendent actuellement
 			
 			if (gameStarted) {
 				client.startTimer(); // démarre le timer du nouveau client
@@ -115,14 +129,15 @@ public class ClientsManager {
 	}
 	
 	/**
-	 * Cherche la première postion disponnible de la grid.
+	 * Cherche la première postion disponible dans la grid de la file d'attente des clients.
 	 *
-	 * @return la première position y libre. Sinon il n'y en a pas, retourne -1
+	 * @return la première position libre dans la file d'attente. Si la file d'attente est pleine, retourne -1.
 	 */
-	private int findFreeClientSpace() {
+	private int findFreeIndexInWaitingQueue() {
 		for (int i = 0; i < NB_MAX_CLIENTS; ++i) {
-			if (tabUseClientGrid[i] == false)
+			if (!tabIndexUsedByClientWaiting[i]) { // vrai si la case à l'index i du gridPane n'est pas occupée par un client
 				return i;
+			}
 		}
 		return -1;
 	}
@@ -152,9 +167,9 @@ public class ClientsManager {
 	 * 		le client à supprimer de la file d'attente.
 	 */
 	public void removeClient(Client client) {
-		//waitingQueue.getChildren().remove(client);
-		int col = waitingQueue.getColumnIndex(client);
-		tabUseClientGrid[col] = false;
+		int col = GridPane.getColumnIndex(client);
+		tabIndexUsedByClientWaiting[col] = false;// on indique dans le tableau que la case du gridPane est maintenant disponible
+		nbClientsWaiting--; // on diminue le nombre de client qui attendent actuellement
 		
 		waitingQueue.getChildren().remove(client);
 	}

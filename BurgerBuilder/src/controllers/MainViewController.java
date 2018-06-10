@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import structure.*;
@@ -75,24 +76,25 @@ public class MainViewController {
 	 */
 	@FXML
 	private void initialize() {
-		vomitBar = new VerticalProgressBar(80, 400, MAX_VAUMIT_BAR);
-		angryBar = new VerticalProgressBar(80, 400, MAX_ANGRY_BAR);
+		vomitBar = new VerticalProgressBar(80, 500, MAX_VAUMIT_BAR);
+		angryBar = new VerticalProgressBar(80, 500, MAX_ANGRY_BAR);
 		
 		vomitVBox.getChildren().add(vomitBar.getProgressHolder());
 		angryVBox.getChildren().add(angryBar.getProgressHolder());
 		
-		for (Integer x = 0; x < NB_MAX_CLIENTS; x++) {
-			//for (int y = 0; y < 1; y++){
-			ColumnConstraints cul = new ColumnConstraints(100);
-			
-			cul.setHalignment(HPos.CENTER);
-			Label label = new Label(Integer.toString(x + 1));
-			waitingQueue.getColumnConstraints().add(cul);
-			waitingQueue.add(label, x, 0);
-			//}
+		for (int i = 0; i < NB_MAX_CLIENTS; i++) {
+			ColumnConstraints columnConstraints = new ColumnConstraints(100); // crée une colonne
+			columnConstraints.setHalignment(HPos.CENTER); // centre son contenu
+			columnConstraints.setMinWidth(100);
+			columnConstraints.setFillWidth(true);
+			Label label = new Label(String.valueOf(i + 1)); // ajoute un label contenant le numéro de sélection de la case
+			waitingQueue.add(label, i, 0); // ajoute le label à la case du gridPane
+			waitingQueue.getColumnConstraints().add(columnConstraints); // ajoute la nouvelle colonne au gridPane
 		}
-		waitingQueue.getColumnConstraints().add(new ColumnConstraints(30)); // column 0 is 100 wide
-		waitingQueue.getColumnConstraints().add(new ColumnConstraints(100)); // column 1 is 200 wide
+		RowConstraints row1Constraints = new RowConstraints(20);
+		RowConstraints row2Constraints = new RowConstraints(140);
+		waitingQueue.getRowConstraints().add(row1Constraints);
+		waitingQueue.getRowConstraints().add(row2Constraints);
 	}
 	
 	/**
@@ -103,10 +105,11 @@ public class MainViewController {
 	 */
 	@FXML
 	private void handleOnKeyPressed(KeyEvent event) {
-		if (event.getCode().isDigitKey()) {
+		if (event.getCode().isDigitKey()) { // vrai si l'utilisateur a pressé sur une touche numérique (0-9)
+			// on récupère l'entier correspondant à la touche pressée et on sélectionne le client occupant la case correspondante dans la file d'attente
 			String s = event.getText();
 			char c = s.charAt(0);
-			selectClient(Character.getNumericValue(c));
+			setSelectedClientWithKeyboard(Character.getNumericValue(c));
 		} else {
 			
 			switch (event.getCode()) {
@@ -351,23 +354,25 @@ public class MainViewController {
 		}
 	}
 	
-	private void selectClient(int i) {
-		/*
-		if(i > NB_MAX_CLIENTS || i == 0 || burgerBuilder != null){
-			return;
-		}
-		*/
-		if (i <= NB_MAX_CLIENTS && i > 0 && burgerBuilder == null) {
-			--i;
+	/**
+	 * Méthode appelée lorsque l'utilisateur presse sur une touche numérique du clavier (0-9).
+	 * Sélectionne le client occupant la case correspondante dans la file d'attente.
+	 *
+	 * @param i,
+	 * 		l'entier correspondant à la touche pressée par l'utilisateur.
+	 */
+	private void setSelectedClientWithKeyboard(int i) {
+		if (i <= clientsManager.getNbClientsWaiting() && i > 0 && burgerBuilder == null) {
+			--i; // la numérotation des clients commence à 1 dans la GUI, d'où le --i
 			
-			Client c = clientsManager.selectClient(i);
+			Client c = clientsManager.getCorrespondingClient(i); // on récupère le client occupant la case dont l'index est reçu en paramètre
 			handleCustomer(c);
 		}
 	}
 	
 	/**
-	 * Méthode appelée lorsqu'un client s'impatiente (à la fin de son timer) et quitte le restaurant en colère sans avoir reçu sa commande. Incrémente
-	 * la jauge de colère des clients. Si la jauge devient pleine, la partie est perdue.
+	 * Méthode appelée lorsqu'un client s'impatiente (à la fin de son timer) et quitte le restaurant en colère sans avoir reçu sa commande.
+	 * Incrémente la jauge de colère des clients. Si la jauge devient pleine, la partie est perdue.
 	 *
 	 * @param client,
 	 * 		le client impatient qui quitte le restaurant en colère.

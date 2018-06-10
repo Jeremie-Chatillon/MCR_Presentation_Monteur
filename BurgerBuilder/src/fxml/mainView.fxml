@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleOnKeyPressed"
-            prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.MainViewController">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleOnKeyPressed" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
 	<top>
 		<MenuBar style="-fx-background-color: #cdcdcd; -fx-border-color: #ababab;" BorderPane.alignment="CENTER">
 			<menus>
 				<Menu mnemonicParsing="false" text="Fichier">
 					<items>
-						<MenuItem mnemonicParsing="false" onAction="#handleQuit" onMenuValidation="#handleQuit" text="Quitter"/>
+						<MenuItem mnemonicParsing="false" onAction="#handleQuit" onMenuValidation="#handleQuit" text="Quitter" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Builder">
 					<items>
-						<MenuItem mnemonicParsing="false" onAction="#handleCancel" onMenuValidation="#handleCancel" text="Annuler la commande"/>
+						<MenuItem mnemonicParsing="false" onAction="#handleCancel" onMenuValidation="#handleCancel" text="Annuler la commande" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Aide">
 					<items>
-						<MenuItem mnemonicParsing="false" onAction="#handleHelp" onMenuValidation="#handleHelp" text="Règles du jeu"/>
+						<MenuItem mnemonicParsing="false" onAction="#handleHelp" onMenuValidation="#handleHelp" text="Règles du jeu" />
 					</items>
 				</Menu>
 			</menus>
@@ -34,175 +34,164 @@
 			<items>
 				<HBox alignment="CENTER_LEFT">
 					<children>
-						<ImageView fx:id="sauce" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleSauce" pickOnBounds="true"
-						           preserveRatio="true">
+						<ImageView fx:id="sauce" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleSauce" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@../sauce.png"/>
+								<Image url="@../sauce.png" />
 							</image>
 						</ImageView>
 						<Label alignment="CENTER" prefWidth="40.0" text="A" textAlignment="CENTER">
 							<font>
-								<Font name="System Bold" size="36.0"/>
+								<Font name="System Bold" size="36.0" />
 							</font>
 						</Label>
 					</children>
 				</HBox>
 				<HBox alignment="CENTER_LEFT">
 					<children>
-						<ImageView fx:id="lettuce" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleLettuce" pickOnBounds="true"
-						           preserveRatio="true">
+						<ImageView fx:id="lettuce" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleLettuce" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@../lettuce.png"/>
+								<Image url="@../lettuce.png" />
 							</image>
 						</ImageView>
 						<Label alignment="CENTER" prefWidth="40.0" text="B" textAlignment="CENTER">
 							<font>
-								<Font name="System Bold" size="36.0"/>
+								<Font name="System Bold" size="36.0" />
 							</font>
 						</Label>
 					</children>
 				</HBox>
 				<HBox alignment="CENTER_LEFT">
 					<children>
-						<ImageView fx:id="ognon" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleOgnon" pickOnBounds="true"
-						           preserveRatio="true">
+						<ImageView fx:id="ognon" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleOgnon" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@../ognon.png"/>
+								<Image url="@../ognon.png" />
 							</image>
 						</ImageView>
 						<Label alignment="CENTER" prefWidth="40.0" text="C" textAlignment="CENTER">
 							<font>
-								<Font name="System Bold" size="36.0"/>
+								<Font name="System Bold" size="36.0" />
 							</font>
 						</Label>
 					</children>
 				</HBox>
 				<HBox alignment="CENTER_LEFT">
 					<children>
-						<ImageView fx:id="pickle" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handlePickle" pickOnBounds="true"
-						           preserveRatio="true">
+						<ImageView fx:id="pickle" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handlePickle" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@../pickle.png"/>
+								<Image url="@../pickle.png" />
 							</image>
 						</ImageView>
 						<Label alignment="CENTER" prefWidth="40.0" text="D" textAlignment="CENTER">
 							<font>
-								<Font name="System Bold" size="36.0"/>
+								<Font name="System Bold" size="36.0" />
 							</font>
 						</Label>
 					</children>
 				</HBox>
 				<HBox alignment="CENTER_LEFT">
 					<children>
-						<ImageView fx:id="cheese" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleCheese" pickOnBounds="true"
-						           preserveRatio="true">
+						<ImageView fx:id="cheese" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleCheese" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@../cheese.png"/>
+								<Image url="@../cheese.png" />
 							</image>
 						</ImageView>
 						<Label alignment="CENTER" prefWidth="40.0" text="E" textAlignment="CENTER">
 							<font>
-								<Font name="System Bold" size="36.0"/>
+								<Font name="System Bold" size="36.0" />
 							</font>
 						</Label>
 					</children>
 				</HBox>
 				<HBox alignment="CENTER_LEFT">
 					<children>
-						<ImageView fx:id="tomatoe" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleTomatoe" pickOnBounds="true"
-						           preserveRatio="true">
+						<ImageView fx:id="tomatoe" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleTomatoe" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@../tomatoe.png"/>
+								<Image url="@../tomatoe.png" />
 							</image>
 						</ImageView>
 						<Label alignment="CENTER" prefWidth="40.0" text="F" textAlignment="CENTER">
 							<font>
-								<Font name="System Bold" size="36.0"/>
+								<Font name="System Bold" size="36.0" />
 							</font>
 						</Label>
 					</children>
 				</HBox>
 				<HBox alignment="CENTER_LEFT">
 					<children>
-						<ImageView fx:id="fish" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleFish" pickOnBounds="true"
-						           preserveRatio="true">
+						<ImageView fx:id="fish" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleFish" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@../fish.png"/>
+								<Image url="@../fish.png" />
 							</image>
 						</ImageView>
 						<Label alignment="CENTER" prefWidth="40.0" text="G" textAlignment="CENTER">
 							<font>
-								<Font name="System Bold" size="36.0"/>
+								<Font name="System Bold" size="36.0" />
 							</font>
 						</Label>
 					</children>
 				</HBox>
 				<HBox alignment="CENTER_LEFT">
 					<children>
-						<ImageView fx:id="chicken" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleChicken" pickOnBounds="true"
-						           preserveRatio="true">
+						<ImageView fx:id="chicken" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleChicken" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@../chicken.png"/>
+								<Image url="@../chicken.png" />
 							</image>
 						</ImageView>
 						<Label alignment="CENTER" prefWidth="40.0" text="H" textAlignment="CENTER">
 							<font>
-								<Font name="System Bold" size="36.0"/>
+								<Font name="System Bold" size="36.0" />
 							</font>
 						</Label>
 					</children>
 				</HBox>
 				<HBox alignment="CENTER_LEFT">
 					<children>
-						<ImageView fx:id="beef" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleBeef" pickOnBounds="true"
-						           preserveRatio="true">
+						<ImageView fx:id="beef" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleBeef" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@../beef.png"/>
+								<Image url="@../beef.png" />
 							</image>
 						</ImageView>
 						<Label alignment="CENTER" prefWidth="40.0" text="I" textAlignment="CENTER">
 							<font>
-								<Font name="System Bold" size="36.0"/>
+								<Font name="System Bold" size="36.0" />
 							</font>
 						</Label>
 					</children>
 				</HBox>
 				<HBox alignment="CENTER_LEFT">
 					<children>
-						<ImageView fx:id="breadTop" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleBreadTop" pickOnBounds="true"
-						           preserveRatio="true">
+						<ImageView fx:id="breadTop" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleBreadTop" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@../breadTop.png"/>
+								<Image url="@../breadTop.png" />
 							</image>
 						</ImageView>
 						<Label alignment="CENTER" prefWidth="40.0" text="J" textAlignment="CENTER">
 							<font>
-								<Font name="System Bold" size="36.0"/>
+								<Font name="System Bold" size="36.0" />
 							</font>
 						</Label>
 					</children>
 				</HBox>
 				<HBox alignment="CENTER_LEFT">
 					<children>
-						<ImageView fx:id="breadBottom" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleBreadBot" pickOnBounds="true"
-						           preserveRatio="true">
+						<ImageView fx:id="breadBottom" fitHeight="45.0" fitWidth="90.0" onMouseClicked="#handleBreadBot" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@../breadBottom.png"/>
+								<Image url="@../breadBottom.png" />
 							</image>
 						</ImageView>
 						<Label alignment="CENTER" prefWidth="40.0" text="K" textAlignment="CENTER">
 							<font>
-								<Font name="System Bold" size="36.0"/>
+								<Font name="System Bold" size="36.0" />
 							</font>
 						</Label>
 					</children>
 				</HBox>
 			</items>
 			<BorderPane.margin>
-				<Insets/>
+				<Insets />
 			</BorderPane.margin>
 			<padding>
-				<Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+				<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
 			</padding>
 		</ToolBar>
 	</left>
@@ -211,83 +200,79 @@
 			<children>
 				<Label text="Argent disponible">
 					<VBox.margin>
-						<Insets bottom="10.0" top="10.0"/>
+						<Insets bottom="10.0" top="10.0" />
 					</VBox.margin>
 				</Label>
 				<HBox alignment="TOP_CENTER" prefHeight="70.0" prefWidth="200.0" spacing="5.0">
 					<children>
 						<Label fx:id="cash" text="500">
 							<font>
-								<Font name="System Bold" size="18.0"/>
+								<Font name="System Bold" size="18.0" />
 							</font>
 						</Label>
 						<Label text="CHF">
 							<font>
-								<Font size="18.0"/>
+								<Font size="18.0" />
 							</font>
 						</Label>
 					</children>
 					<VBox.margin>
-						<Insets/>
+						<Insets />
 					</VBox.margin>
 				</HBox>
-				<Label text="Clients servis :"/>
+				<Label text="Clients servis :" />
 				<Label fx:id="labelNbClientsDelivred" text="0" textAlignment="CENTER">
 					<VBox.margin>
-						<Insets bottom="10.0"/>
+						<Insets bottom="10.0" />
 					</VBox.margin>
 				</Label>
-				<Label text="Clients ayant vomit :" textAlignment="CENTER" wrapText="true"/>
+				<Label text="Clients ayant vomit :" textAlignment="CENTER" wrapText="true" />
 				<Label fx:id="labelNbClientsVomited" text="0" textAlignment="CENTER">
 					<VBox.margin>
-						<Insets bottom="10.0"/>
+						<Insets bottom="10.0" />
 					</VBox.margin>
 				</Label>
-				<Label text="Clients partis avant d'être servis :" textAlignment="CENTER" wrapText="true"/>
+				<Label text="Clients partis avant d'être servis :" textAlignment="CENTER" wrapText="true" />
 				<Label fx:id="labelNbClientsAngry" text="0" textAlignment="CENTER">
 					<VBox.margin>
-						<Insets bottom="10.0"/>
+						<Insets bottom="10.0" />
 					</VBox.margin>
 				</Label>
-				<Pane prefWidth="150.0" VBox.vgrow="ALWAYS"/>
+				<Pane prefWidth="150.0" VBox.vgrow="ALWAYS" />
 			</children>
 		</VBox>
 	</right>
 	<center>
 		<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
 			<children>
-				<VBox alignment="CENTER" focusTraversable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-				      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+				<VBox alignment="CENTER" focusTraversable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<children>
-						<GridPane fx:id="waitingQueue" alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="100.0" VBox.vgrow="NEVER"/>
+						<GridPane fx:id="waitingQueue" alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="100.0" VBox.vgrow="NEVER" />
 						<BorderPane VBox.vgrow="SOMETIMES">
 							<center>
-								<VBox fx:id="builderVBox" alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity"
-								      minWidth="-Infinity" prefWidth="400.0" style="-fx-border-color: #ababab;" BorderPane.alignment="CENTER">
+								<VBox fx:id="builderVBox" alignment="BOTTOM_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0" style="-fx-border-color: #ababab;" BorderPane.alignment="CENTER">
 									<padding>
-										<Insets bottom="10.0"/>
+										<Insets bottom="10.0" />
 									</padding>
 								</VBox>
 							</center>
 							<right>
 								<HBox alignment="CENTER" minWidth="-Infinity" prefWidth="200.0" BorderPane.alignment="CENTER">
 									<children>
-										<VBox fx:id="angryVBox" alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0"
-										      spacing="5.0">
+										<VBox fx:id="angryVBox" alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" spacing="5.0">
 											<children>
-												<Label text="Colère"/>
+												<Label text="Colère" />
 											</children>
 											<padding>
-												<Insets bottom="10.0"/>
+												<Insets bottom="10.0" />
 											</padding>
 										</VBox>
-										<VBox fx:id="vomitVBox" alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0"
-										      spacing="5.0">
+										<VBox fx:id="vomitVBox" alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" spacing="5.0">
 											<children>
-												<Label text="Vomit"/>
+												<Label text="Vomit" />
 											</children>
 											<padding>
-												<Insets bottom="10.0"/>
+												<Insets bottom="10.0" />
 											</padding>
 										</VBox>
 									</children>
@@ -296,25 +281,23 @@
 							<left>
 								<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" prefWidth="300.0" BorderPane.alignment="CENTER">
 									<BorderPane.margin>
-										<Insets/>
+										<Insets />
 									</BorderPane.margin>
 									<padding>
-										<Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+										<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
 									</padding>
 									<children>
-										<Label fx:id="menuLabel" text="Sélectionnez un client pour traiter sa commande" textAlignment="CENTER"
-										       wrapText="true">
+										<Label fx:id="menuLabel" text="Sélectionnez un client pour traiter sa commande" textAlignment="CENTER" wrapText="true">
 											<VBox.margin>
-												<Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+												<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
 											</VBox.margin>
 											<font>
-												<Font size="14.0"/>
+												<Font size="14.0" />
 											</font>
 										</Label>
-										<VBox fx:id="menuVBox" alignment="CENTER" maxHeight="1.7976931348623157E308" prefWidth="300.0"
-										      VBox.vgrow="ALWAYS">
+										<VBox fx:id="menuVBox" alignment="CENTER" maxHeight="1.7976931348623157E308" prefWidth="300.0" VBox.vgrow="ALWAYS">
 											<padding>
-												<Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+												<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
 											</padding>
 										</VBox>
 									</children>
@@ -330,13 +313,11 @@
 	<bottom>
 		<HBox alignment="CENTER" spacing="150.0" style="-fx-background-color: #cdcdcd; -fx-border-color: #ababab;" BorderPane.alignment="CENTER">
 			<children>
-				<Button fx:id="deliver" alignment="CENTER" minWidth="150.0" mnemonicParsing="false" onAction="#handleDeliver" text="Livrer au client"
-				        textAlignment="CENTER"/>
-				<Button fx:id="cancel" alignment="CENTER" minWidth="150.0" mnemonicParsing="false" onAction="#handleCancel" text="Annuler la commande"
-				        textAlignment="CENTER"/>
+				<Button fx:id="deliver" alignment="CENTER" minWidth="150.0" mnemonicParsing="false" onAction="#handleDeliver" text="Livrer au client" textAlignment="CENTER" />
+				<Button fx:id="cancel" alignment="CENTER" minWidth="150.0" mnemonicParsing="false" onAction="#handleCancel" text="Annuler la commande" textAlignment="CENTER" />
 			</children>
 			<padding>
-				<Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+				<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
 			</padding>
 		</HBox>
 	</bottom>

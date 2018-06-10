@@ -82,19 +82,18 @@ public class MainViewController {
 		vomitVBox.getChildren().add(vomitBar.getProgressHolder());
 		angryVBox.getChildren().add(angryBar.getProgressHolder());
 		
+		// on ajoute autant de colonne au gridPane qu'il peut y avoir de clients dans la file d'attente
 		for (int i = 0; i < NB_MAX_CLIENTS; i++) {
 			ColumnConstraints columnConstraints = new ColumnConstraints(100); // crée une colonne
-			columnConstraints.setHalignment(HPos.CENTER); // centre son contenu
+			columnConstraints.setHalignment(HPos.CENTER); // centre le contenu de la colonne
 			columnConstraints.setMinWidth(100);
 			columnConstraints.setFillWidth(true);
 			Label label = new Label(String.valueOf(i + 1)); // ajoute un label contenant le numéro de sélection de la case
 			waitingQueue.add(label, i, 0); // ajoute le label à la case du gridPane
 			waitingQueue.getColumnConstraints().add(columnConstraints); // ajoute la nouvelle colonne au gridPane
 		}
-		RowConstraints row1Constraints = new RowConstraints(20);
-		RowConstraints row2Constraints = new RowConstraints(140);
-		waitingQueue.getRowConstraints().add(row1Constraints);
-		waitingQueue.getRowConstraints().add(row2Constraints);
+		waitingQueue.getRowConstraints().add(new RowConstraints(20)); // ajoute une première ligne au gridPane
+		waitingQueue.getRowConstraints().add(new RowConstraints(140)); // ajoute une 2ème ligne au gridPane
 	}
 	
 	/**
@@ -106,12 +105,12 @@ public class MainViewController {
 	@FXML
 	private void handleOnKeyPressed(KeyEvent event) {
 		if (event.getCode().isDigitKey()) { // vrai si l'utilisateur a pressé sur une touche numérique (0-9)
-			// on récupère l'entier correspondant à la touche pressée et on sélectionne le client occupant la case correspondante dans la file d'attente
+			// on récupère l'entier correspondant à la touche pressée
 			String s = event.getText();
 			char c = s.charAt(0);
+			// on sélectionne le client occupant la case correspondante dans la file d'attente
 			setSelectedClientWithKeyboard(Character.getNumericValue(c));
 		} else {
-			
 			switch (event.getCode()) {
 				case A:
 					handleSauce();

@@ -4,3 +4,7 @@ BurgerBuilder/\.idea/
 BurgerBuilder/out/
 
 *.iml
+
+\.idea/
+
+out/

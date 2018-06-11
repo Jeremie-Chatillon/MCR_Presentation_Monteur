@@ -361,11 +361,13 @@ public class MainViewController {
 	 * 		l'entier correspondant à la touche pressée par l'utilisateur.
 	 */
 	private void setSelectedClientWithKeyboard(int i) {
-		if (i <= clientsManager.getNbClientsWaiting() && i > 0 && burgerBuilder == null) {
+		if (i <= NB_MAX_CLIENTS && i > 0 && burgerBuilder == null) {
 			--i; // la numérotation des clients commence à 1 dans la GUI, d'où le --i
 			
 			Client c = clientsManager.getCorrespondingClient(i); // on récupère le client occupant la case dont l'index est reçu en paramètre
-			handleCustomer(c);
+			if (c != null) {
+				handleCustomer(c);
+			}
 		}
 	}
 	

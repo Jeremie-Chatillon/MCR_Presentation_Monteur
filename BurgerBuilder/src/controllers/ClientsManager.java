@@ -25,7 +25,6 @@ public class ClientsManager {
 	private int remainingTimeBeforeNewClient;
 	private boolean gameIsRunning = false; // vaut true lorsqu'une partie est en cours, false sinon
 	private Timeline timer;
-	private int nbClientsWaiting = 0; // nombre de clients actuellement dans la file d'ttente
 	private boolean tabIndexUsedByClientWaiting[]; // true à l'indice i indique qu'un client se trouve dans la case i de la file d'attente
 	
 	/**
@@ -100,15 +99,6 @@ public class ClientsManager {
 	}
 	
 	/**
-	 * Retourne le nombre de clients qui se trouvent actuellement dans la file d'attente.
-	 *
-	 * @return le nombre de clients qui se trouvent actuellement dans la file d'atttente.
-	 */
-	public int getNbClientsWaiting() {
-		return nbClientsWaiting;
-	}
-	
-	/**
 	 * Ajoute un nouveau client à la file d'attente. Lance son timer si gameStarted vaut true.
 	 *
 	 * @param gameStarted,
@@ -120,7 +110,6 @@ public class ClientsManager {
 			Client client = new Client(mainViewController);
 			waitingQueue.add(client, i, 1);
 			tabIndexUsedByClientWaiting[i] = true; // on indique dans le tableau que la case du gridPane est maintenant occupée par un client
-			nbClientsWaiting++; // on augmente le nombre de client qui attendent actuellement
 			
 			if (gameStarted) {
 				client.startTimer(); // démarre le timer du nouveau client
@@ -169,7 +158,6 @@ public class ClientsManager {
 	public void removeClient(Client client) {
 		int col = GridPane.getColumnIndex(client);
 		tabIndexUsedByClientWaiting[col] = false;// on indique dans le tableau que la case du gridPane est maintenant disponible
-		nbClientsWaiting--; // on diminue le nombre de client qui attendent actuellement
 		
 		waitingQueue.getChildren().remove(client);
 	}

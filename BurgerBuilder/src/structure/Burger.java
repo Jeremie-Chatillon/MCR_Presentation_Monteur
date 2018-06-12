@@ -1,5 +1,6 @@
 package structure;
 
+import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
@@ -53,12 +54,13 @@ public class Burger {
 		VBox vbox = new VBox();
 		for (Condiment c : content) {
 			ImageView imageView = new ImageView();
-			imageView.setFitHeight(50);
-			imageView.setFitWidth(100);
+			imageView.setFitHeight(60);
+			imageView.setFitWidth(120);
 			imageView.setImage(c.getImage());
 			
 			vbox.getChildren().add(imageView);
 			imageView.toBack();
+			vbox.setAlignment(Pos.CENTER);
 		}
 		return vbox;
 	}

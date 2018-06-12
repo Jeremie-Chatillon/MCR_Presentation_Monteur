@@ -317,7 +317,7 @@ public class MainViewController {
 		ButtonType buttonTypeOne = new ButtonType("Jouer"); // ajoute un bouton "jouer" à la boite de dialogue
 		alert.getButtonTypes().add(buttonTypeOne);
 		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == buttonTypeOne) {
+		if (result .isPresent() && result.get() == buttonTypeOne) {
 			waitingQueue.getChildren().clear();
 			vomitBar.reset();
 			angryBar.reset();
@@ -369,7 +369,7 @@ public class MainViewController {
 		alert.getButtonTypes().clear();
 		alert.getButtonTypes().add(buttonTypeOne);
 		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == buttonTypeOne) {
+		if (result.isPresent() && result.get() == buttonTypeOne) {
 			continueGame(); // relance le jeu là où il avit été interrompu lorsqu'on clique sur le bouton de la boite de dialogue
 		}
 	}
@@ -545,8 +545,10 @@ public class MainViewController {
 		imv.toBack();
 	}
 	
+	/**
+	 * Initialise la waitingQueue (le gridPane affichant la file d'attente de clients).
+	 */
 	private void initWaitingQueue() {
-		waitingQueue.
 		// on ajoute autant de colonne au gridPane qu'il peut y avoir de clients dans la file d'attente
 		for (int i = 0; i < NB_MAX_CLIENTS; i++) {
 			ColumnConstraints columnConstraints = new ColumnConstraints(100); // crée une colonne
@@ -561,6 +563,9 @@ public class MainViewController {
 		waitingQueue.getRowConstraints().add(new RowConstraints(140)); // ajoute une 2ème ligne au gridPane
 	}
 	
+	/**
+	 * Réinitialise la file d'attente des clients.
+	 */
 	private void resetWaitingQueue() {
 		waitingQueue.getChildren().clear(); // supprime tout les enfants de la waitingQueue
 		

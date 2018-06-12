@@ -357,13 +357,13 @@ public class MainViewController {
 		alert.setTitle("BurgerBuilder");
 		alert.setHeaderText("Règles du jeu");
 		alert.setContentText("Le but du jeu est de servir autant de client que possible afin que votre restaurant de burger fasse fortune !" +
-				"\nMais attention! Si vous tardez trop à servir un client, il s'en ira en colère, et si vous lui ne donnez pas ce qu'il demande, " +
+				"\nMais attention! Si vous tardez trop à servir un client, il s'en ira en colère, et si vous ne lui donnez pas ce qu'il demande, " +
 				"il vomira!\nDans les deux cas, la jauge correspondante augmentera. Remplissez une des deux jauge et c'est perdu !" +
-				"\nAttention également à ne pas gaspiller les condiments. Ceux-ci vous coutent et si le cash de votre restaurant arrive à 0, ça sera" +
-				" la faillite! \n\n" +
+				"\nAttention également à ne pas gaspiller les condiments. Ceux-ci vous coûtent et si le cash de votre restaurant arrive à 0, ça sera" +
+				" la faillite!\n\n" +
 				"Utilisez les touches du clavier pour jouer. Les touches numérotées vous permettent de sélectionner le client que vous souhaitez " +
-				"servir. \n La touche Enter livre le burger au client.\nEffacer supprime le burger actuel.\nAppuyez sur la touche correspondante au " +
-				"condiment que vous souhaitez ajouter à votre burger. ATTENTION! L'ordre des condiments est important!");
+				"servir. \n La touche Enter livre le burger au client.\nEffacer supprime le burger actuel et désélectionne le client actuellement sélectionné." +
+				"\nAppuyez sur la touche du clavier correspondante au condiment que vous souhaitez ajouter à votre burger. ATTENTION! L'ordre des condiments est important!");
 		
 		ButtonType buttonTypeOne = new ButtonType("C'est compris"); // ajoute un bouton "C'est compris" à la boite de dialogue
 		alert.getButtonTypes().clear();
@@ -546,6 +546,7 @@ public class MainViewController {
 	}
 	
 	private void initWaitingQueue() {
+		waitingQueue.
 		// on ajoute autant de colonne au gridPane qu'il peut y avoir de clients dans la file d'attente
 		for (int i = 0; i < NB_MAX_CLIENTS; i++) {
 			ColumnConstraints columnConstraints = new ColumnConstraints(100); // crée une colonne

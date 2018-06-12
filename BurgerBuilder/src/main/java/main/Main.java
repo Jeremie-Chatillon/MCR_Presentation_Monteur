@@ -18,7 +18,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader fxmlLoaderMainViewController = new FXMLLoader(getClass().getResource("../fxml/mainView.fxml"));
+		FXMLLoader fxmlLoaderMainViewController = new FXMLLoader(getClass().getResource("/fxml/mainView.fxml"));
 		Parent root = fxmlLoaderMainViewController.load();
 		primaryStage.setTitle("Burger Builder");
 		Scene scene = new Scene(root);

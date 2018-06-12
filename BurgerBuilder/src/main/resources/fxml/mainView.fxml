@@ -13,7 +13,8 @@
 			<menus>
 				<Menu mnemonicParsing="false" text="Fichier">
 					<items>
-						<MenuItem mnemonicParsing="false" onAction="#handleQuit" onMenuValidation="#handleQuit" text="Quitter" />
+						<MenuItem mnemonicParsing="false" onAction="#handleRestart" onMenuValidation="#handleRestart" text="Recommencer" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleQuit" onMenuValidation="#handleQuit" text="Quitter" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Builder">

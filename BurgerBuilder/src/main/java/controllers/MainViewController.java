@@ -145,7 +145,7 @@ public class MainViewController {
 	}
 	
 	/**
-	 * Méthode appelé par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
+	 * Méthode appelée par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
 	 * la touche du clavier correspondante.
 	 * <br>Ajoute la sauce au burgerBuilder.
 	 */
@@ -155,7 +155,7 @@ public class MainViewController {
 	}
 	
 	/**
-	 * Méthode appelé par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
+	 * Méthode appelée par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
 	 * la touche du clavier correspondante.
 	 * <br>Ajoute la salade au burgerBuilder.
 	 */
@@ -165,7 +165,7 @@ public class MainViewController {
 	}
 	
 	/**
-	 * Méthode appelé par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
+	 * Méthode appelée par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
 	 * la touche du clavier correspondante.
 	 * <br>Ajoute les oignons au burgerBuilder.
 	 */
@@ -175,7 +175,7 @@ public class MainViewController {
 	}
 	
 	/**
-	 * Méthode appelé par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
+	 * Méthode appelée par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
 	 * la touche du clavier correspondante.
 	 * <br>Ajoute le cornichon au burgerBuilder.
 	 */
@@ -185,7 +185,7 @@ public class MainViewController {
 	}
 	
 	/**
-	 * Méthode appelé par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
+	 * Méthode appelée par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
 	 * la touche du clavier correspondante.
 	 * <br>Ajoute le fromage au burgerBuilder.
 	 */
@@ -195,7 +195,7 @@ public class MainViewController {
 	}
 	
 	/**
-	 * Méthode appelé par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
+	 * Méthode appelée par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
 	 * la touche du clavier correspondante.
 	 * <br>Ajoute la tomate au burgerBuilder.
 	 */
@@ -205,7 +205,7 @@ public class MainViewController {
 	}
 	
 	/**
-	 * Méthode appelé par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
+	 * Méthode appelée par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
 	 * la touche du clavier correspondante.
 	 * <br>Ajoute le poisson au burgerBuilder.
 	 */
@@ -215,7 +215,7 @@ public class MainViewController {
 	}
 	
 	/**
-	 * Méthode appelé par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
+	 * Méthode appelée par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
 	 * la touche du clavier correspondante.
 	 * <br>Ajoute le poulet au burgerBuilder.
 	 */
@@ -225,7 +225,7 @@ public class MainViewController {
 	}
 	
 	/**
-	 * Méthode appelé par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
+	 * Méthode appelée par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
 	 * la touche du clavier correspondante.
 	 * <br>Ajoute la viande au burgerBuilder.
 	 */
@@ -235,7 +235,7 @@ public class MainViewController {
 	}
 	
 	/**
-	 * Méthode appelé par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
+	 * Méthode appelée par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
 	 * la touche du clavier correspondante.
 	 * <br>Ajoute le pain du haut au burgerBuilder.
 	 */
@@ -245,7 +245,7 @@ public class MainViewController {
 	}
 	
 	/**
-	 * Méthode appelé par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
+	 * Méthode appelée par JavaFX lorsque l'utilisateur clique sur l'image correspondante dans la barre des condiments à gauche de la GUI ou appuie sur
 	 * la touche du clavier correspondante.
 	 * <br>Ajoute le pain du bas au burgerBuilder.
 	 */
@@ -255,7 +255,7 @@ public class MainViewController {
 	}
 	
 	/**
-	 * Méthode appelé par JavaFX lorsque l'utilisateur clique sur le bouton <b>Annuler la commande</b>, sur la touche du clavier correspondante ou
+	 * Méthode appelée par JavaFX lorsque l'utilisateur clique sur le bouton <b>Annuler la commande</b>, sur la touche du clavier correspondante ou
 	 * sur le menu Builder -> Annuler la commande.
 	 * Réinitialise le burgerBuilder et désélectionne le client actuellement sélectionné.
 	 */
@@ -266,7 +266,7 @@ public class MainViewController {
 	}
 	
 	/**
-	 * Méthode appelé par JavaFX lorsque l'utilisateur clique sur le bouton <b>Livrer au client</b> ou sur la touche du clavier correspondante. Livre
+	 * Méthode appelée par JavaFX lorsque l'utilisateur clique sur le bouton <b>Livrer au client</b> ou sur la touche du clavier correspondante. Livre
 	 * le burger au client actuellement sélectionné. Si le burger est correct, incrémente la caisse du restaurant. Si le burger est incorrect,
 	 * augmente la jauge de vomit du restaurant et réinitialise le burgerBuilder. Si la jauge devient pleine, la partie est perdue.
 	 */
@@ -288,7 +288,7 @@ public class MainViewController {
 	}
 	
 	/**
-	 * Méthode appelé par JavaFX lorsque l'utilisateur clique sur un client de la file d'attente ou sur la touche du clavier correspondante.
+	 * Méthode appelée par JavaFX lorsque l'utilisateur clique sur un client de la file d'attente ou sur la touche du clavier correspondante.
 	 * Sélectionne le client.
 	 */
 	@FXML
@@ -298,6 +298,38 @@ public class MainViewController {
 			clientsManager.setSelectedClient(client);
 			burgerBuilder = client.getBurgerBuilder();
 			updateMenuView(client);
+		}
+	}
+	
+	/**
+	 * Méthode appelée par JavaFX lorsque l'utilisateur clique sur le menu Fichier -> Recommencer ou quitte la fenêtre apparaissant après que le
+	 * joueur ait perdu la partie. Réinitialise le jeu et démarre une nouvelle partie.
+	 */
+	@FXML
+	public void handleRestart() {
+		stopGame();
+		
+		// Ouvre une boite de dialogue permettant de démarrer le jeu
+		Alert alert = new Alert(Alert.AlertType.NONE);
+		alert.setTitle("BurgerBuilder");
+		alert.setHeaderText("Démarrer une nouvelle partie");
+		
+		ButtonType buttonTypeOne = new ButtonType("Jouer"); // ajoute un bouton "jouer" à la boite de dialogue
+		alert.getButtonTypes().add(buttonTypeOne);
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result .isPresent() && result.get() == buttonTypeOne) {
+			waitingQueue.getChildren().clear();
+			vomitBar.reset();
+			angryBar.reset();
+			nbClientsVomited = 0;
+			nbClientsAngry = 0;
+			labelNbClientsDelivred.setText("0");
+			labelNbClientsAngry.setText("0");
+			labelNbClientsVomited.setText("0");
+			resetWaitingQueue();
+			resetBurgerBuilder();
+			resetMenuView();
+			startGame(); // démarre le jeu lorsqu'on clique sur le bouton de la boite de dialogue
 		}
 	}
 	
@@ -325,19 +357,19 @@ public class MainViewController {
 		alert.setTitle("BurgerBuilder");
 		alert.setHeaderText("Règles du jeu");
 		alert.setContentText("Le but du jeu est de servir autant de client que possible afin que votre restaurant de burger fasse fortune !" +
-				"\nMais attention! Si vous tardez trop à servir un client, il s'en ira en colère, et si vous lui ne donnez pas ce qu'il demande, " +
+				"\nMais attention! Si vous tardez trop à servir un client, il s'en ira en colère, et si vous ne lui donnez pas ce qu'il demande, " +
 				"il vomira!\nDans les deux cas, la jauge correspondante augmentera. Remplissez une des deux jauge et c'est perdu !" +
-				"\nAttention également à ne pas gaspiller les condiments. Ceux-ci vous coutent et si le cash de votre restaurant arrive à 0, ça sera" +
-				" la faillite! \n\n" +
+				"\nAttention également à ne pas gaspiller les condiments. Ceux-ci vous coûtent et si le cash de votre restaurant arrive à 0, ça sera" +
+				" la faillite!\n\n" +
 				"Utilisez les touches du clavier pour jouer. Les touches numérotées vous permettent de sélectionner le client que vous souhaitez " +
-				"servir. \n La touche Enter livre le burger au client.\nEffacer supprime le burger actuel.\nAppuyez sur la touche correspondante au " +
-				"condiment que vous souhaitez ajouter à votre burger. ATTENTION! L'ordre des condiments est important!");
+				"servir. \n La touche Enter livre le burger au client.\nEffacer supprime le burger actuel et désélectionne le client actuellement sélectionné." +
+				"\nAppuyez sur la touche du clavier correspondante au condiment que vous souhaitez ajouter à votre burger. ATTENTION! L'ordre des condiments est important!");
 		
 		ButtonType buttonTypeOne = new ButtonType("C'est compris"); // ajoute un bouton "C'est compris" à la boite de dialogue
 		alert.getButtonTypes().clear();
 		alert.getButtonTypes().add(buttonTypeOne);
 		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == buttonTypeOne) {
+		if (result.isPresent() && result.get() == buttonTypeOne) {
 			continueGame(); // relance le jeu là où il avit été interrompu lorsqu'on clique sur le bouton de la boite de dialogue
 		}
 	}
@@ -412,7 +444,6 @@ public class MainViewController {
 	 */
 	private void showLooseAlert(String message) {
 		stopGame();
-		waitingQueue.getChildren().clear();
 		
 		// Ouvre une boite de dialogue annonçant la fin de la partie
 		Alert alert = new Alert(Alert.AlertType.NONE);
@@ -424,21 +455,13 @@ public class MainViewController {
 				"\nNombre de clients ayant vomi : " + nbClientsVomited +
 				"\nNombre de clients n'ayant pas été servis à temps : " + nbClientsAngry);
 		
-		nbClientsVomited = 0;
-		nbClientsAngry = 0;
-		
 		ButtonType buttonTypeOne = new ButtonType("Rejouer"); // ajoute un bouton "Rejouer" à la boite de dialogue
 		alert.getButtonTypes().add(buttonTypeOne);
 		alert.show();
 		
 		// évènement déclanché lorsque l'alerte est masquée (donc que l'utilisateur a cliqué sur rejouer)
 		alert.setOnHidden(evt -> {
-			vomitBar.reset();
-			angryBar.reset();
-			resetWaitingQueue();
-			resetBurgerBuilder();
-			resetMenuView();
-			startGame(); // démarre le jeu lorsqu'on clique sur le bouton de la boite de dialogue
+			handleRestart();
 		});
 	}
 	
@@ -461,7 +484,9 @@ public class MainViewController {
 	 * Arrête la partie en arrêant et réinitialisant tous les timers.
 	 */
 	private void stopGame() {
-		clientsManager.stopTimers();
+		if (clientsManager != null) {
+			clientsManager.stopTimers();
+		}
 	}
 	
 	/**
@@ -520,6 +545,9 @@ public class MainViewController {
 		imv.toBack();
 	}
 	
+	/**
+	 * Initialise la waitingQueue (le gridPane affichant la file d'attente de clients).
+	 */
 	private void initWaitingQueue() {
 		// on ajoute autant de colonne au gridPane qu'il peut y avoir de clients dans la file d'attente
 		for (int i = 0; i < NB_MAX_CLIENTS; i++) {
@@ -535,6 +563,9 @@ public class MainViewController {
 		waitingQueue.getRowConstraints().add(new RowConstraints(140)); // ajoute une 2ème ligne au gridPane
 	}
 	
+	/**
+	 * Réinitialise la file d'attente des clients.
+	 */
 	private void resetWaitingQueue() {
 		waitingQueue.getChildren().clear(); // supprime tout les enfants de la waitingQueue
 		

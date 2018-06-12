@@ -57,7 +57,6 @@ public class VerticalProgressBar {
 						new KeyValue(progressBar.progressProperty(), newValue)
 				)
 		);
-		
 	}
 	
 	/**

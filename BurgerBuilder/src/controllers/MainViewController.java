@@ -415,12 +415,6 @@ public class MainViewController {
 		stopGame();
 		waitingQueue.getChildren().clear();
 		
-		try {
-			TimeUnit.MILLISECONDS.sleep(250);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
 		// Ouvre une boite de dialogue annonçant la fin de la partie
 		Alert alert = new Alert(Alert.AlertType.NONE);
 		alert.setTitle("BurgerBuilder");

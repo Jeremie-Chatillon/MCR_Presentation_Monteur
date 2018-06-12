@@ -355,9 +355,6 @@ public class MainViewController {
 			--i; // la numérotation des clients commence à 1 dans la GUI, d'où le --i
 			
 			Client c = clientsManager.getCorrespondingClient(i); // on récupère le client occupant la case dont l'index est reçu en paramètre
-			if (c != null) {
-				handleCustomer(c);
-			}
 		}
 	}
 	

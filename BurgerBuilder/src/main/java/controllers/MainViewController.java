@@ -443,6 +443,8 @@ public class MainViewController {
 	 * 		le message à afficher indiquant la raison de la défaite.
 	 */
 	private void showLooseAlert(String message) {
+		stopGame();
+		
 		// Ouvre une boite de dialogue annonçant la fin de la partie
 		Alert alert = new Alert(Alert.AlertType.NONE);
 		alert.setTitle("BurgerBuilder");

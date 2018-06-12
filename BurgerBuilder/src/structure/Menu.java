@@ -32,8 +32,9 @@ public class Menu {
 	/**
 	 * Crée un menu avec le nom et l'instance du singleton de BurgerBuilder passée en paramètre.
 	 *
-	 * @param name
-	 * @param burgerBuilder
+	 * @param name, le nom à donner au menu.
+	 *
+	 * @param burgerBuilder, le builder concret qui sera utilisé pour construire se menu.
 	 */
 	public Menu(String name, BurgerBuilder burgerBuilder) {
 		this.name = name + " Burger";

@@ -25,7 +25,6 @@ public class FullMeatBurgerBuilder extends BurgerBuilder {
 	 * Constructeur privé (modèle Singleton).
 	 */
 	private FullMeatBurgerBuilder() {
-		//FIXME: ne faudrait-il pas définir la liste condimentsBurgerMenu à partir du menu...?
 		condimentsBurgerMenu = new LinkedList<>(Arrays.asList(Condiment.BREAD_BOT, Condiment.BEEF, Condiment.CHICKEN, Condiment.SAUCE, Condiment.FISH, Condiment.SAUCE, Condiment.CHICKEN, Condiment.BEEF, Condiment.BREAD_TOP));
 	}
 }

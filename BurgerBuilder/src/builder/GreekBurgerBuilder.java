@@ -25,7 +25,6 @@ public class GreekBurgerBuilder extends BurgerBuilder {
 	 * Constructeur privé (modèle Singleton).
 	 */
 	private GreekBurgerBuilder() {
-		//FIXME: ne faudrait-il pas définir la liste condimentsBurgerMenu à partir du menu...?
 		condimentsBurgerMenu = new LinkedList<>(Arrays.asList(Condiment.BREAD_BOT, Condiment.SAUCE, Condiment.BREAD_TOP));
 	}
 }

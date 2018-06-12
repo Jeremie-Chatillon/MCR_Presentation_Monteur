@@ -28,17 +28,7 @@ public class Main extends Application {
 		MainViewController mainViewController = fxmlLoaderMainViewController.getController();
 		primaryStage.show();
 		
-		// Ouvre une boite de dialogue permettant de démarrer le jeu
-		Alert alert = new Alert(Alert.AlertType.NONE);
-		alert.setTitle("BurgerBuilder");
-		alert.setHeaderText("Démarrer une nouvelle partie");
-		
-		ButtonType buttonTypeOne = new ButtonType("Jouer"); // ajoute un bouton "jouer" à la boite de dialogue
-		alert.getButtonTypes().add(buttonTypeOne);
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == buttonTypeOne) {
-			mainViewController.startGame(); // démarre le jeu lorsqu'on clique sur le bouton de la boite de dialogue
-		}
+		mainViewController.handleRestart();
 	}
 	
 	/**

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="2147483626mm" y="2147483606mm" width="-2147483605mm" height="-2147483585mm" viewBox="2147483626 2147483606 -2147483605 -2147483585">
+<style type="text/css"><![CDATA[
+text { font:12px Dialog; }
+]]></style>
+<path d="M2147483648,2147483648 L2147483648,2147483648 L-2147483520,2147483648 Q-2147483520,2147483648 -2147483520,2147483648 L2147483648,2147483648" style="fill:rgb(255,247,225);stroke:none" />
+<path d="M2147483648,2147483648 L2147483648,2147483648 L-2147483520,2147483648 Q-2147483520,2147483648 -2147483520,2147483648 L2147483648,2147483648" style="fill:none;stroke:rgb(65,65,65);stroke-width:1.2;stroke-linecap:square" />
+<text x="2147483648" y="2147483648" style="font:16px Ubuntu">BB DomainModel</text>
+<rect x="2147483648" y="2147483648" width="-2147483648" height="-2147483648" style="fill:none;stroke:rgb(64,64,64);stroke-linecap:square" />
+</svg>

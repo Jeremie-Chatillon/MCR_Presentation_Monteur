@@ -390,7 +390,7 @@ public class MainViewController {
 		clientsManager.removeSelectedClient();
 		
 		if (nbClientsVomited >= MAX_VAUMIT_BAR) {
-			showLooseAlert("Trop de client ont reçu une mauvaise commande et ont quitté votre restaurant en vaumissant!");
+			showLooseAlert("Trop de client ont reçu une mauvaise commande et ont quitté votre restaurant en vomissant!");
 		}
 	}
 	

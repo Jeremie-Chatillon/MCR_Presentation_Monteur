@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 import structure.*;
 
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 import static structure.Rules.*;
 
@@ -430,15 +429,17 @@ public class MainViewController {
 		
 		ButtonType buttonTypeOne = new ButtonType("Rejouer"); // ajoute un bouton "Rejouer" à la boite de dialogue
 		alert.getButtonTypes().add(buttonTypeOne);
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.isPresent() && result.get() == buttonTypeOne) {
+		alert.show();
+		
+		// évènement déclanché lorsque l'alerte est masquée (donc que l'utilisateur a cliqué sur rejouer)
+		alert.setOnHidden(evt -> {
 			vomitBar.reset();
 			angryBar.reset();
 			resetWaitingQueue();
 			resetBurgerBuilder();
 			resetMenuView();
 			startGame(); // démarre le jeu lorsqu'on clique sur le bouton de la boite de dialogue
-		}
+		});
 	}
 	
 	/**

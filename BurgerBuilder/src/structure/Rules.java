@@ -14,20 +14,4 @@ public class Rules {
 	public static final int MAX_ANGRY_BAR = 10; // nombre max de client pouvant partir sans leur commande avant de perdre la partie
 	public static final int CONDIMENT_BENEF = 2; // bénéfice par condiment (formule: prix du condiment + CONDIMENT_BENEF pour chaque condiment du burger)
 	
-	
-	/*
-	public static final KeyCode TOUCHE_SAUCE = A;
-	public static final KeyCode TOUCHE_LETTUCE = B;
-	public static final KeyCode TOUCHE_OGNON = C;
-	public static final KeyCode TOUCHE_PICKLE = D;
-	public static final KeyCode TOUCHE_CHEESE = E;
-	public static final KeyCode TOUCHE_TOMATOE = F;
-	public static final KeyCode TOUCHE_FISH = G;
-	public static final KeyCode TOUCHE_CHICKEN = H;
-	public static final KeyCode TOUCHE_BEEF = I;
-	public static final KeyCode TOUCHE_BREADTOP = J;
-	public static final KeyCode TOUCHE_BREADBOTTOM = K;
-	public static final KeyCode TOUCHE_DELIVER = ENTER;
-	public static final KeyCode TOUCHE_CANCEL = BACK_SPACE;
-	*/
 }

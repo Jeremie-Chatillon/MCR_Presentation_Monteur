@@ -28,7 +28,7 @@ public class Burger {
 	}
 	
 	/**
-	 * Retourne le prix que doit pyer le client pour acheter ce burger.
+	 * Retourne le prix que doit payer le client pour acheter ce burger.
 	 *
 	 * @return un entier, le prix que doit payer le client pour acheter ce burger.
 	 */

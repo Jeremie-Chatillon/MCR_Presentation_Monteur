@@ -157,9 +157,8 @@ public class ClientsManager {
 	 */
 	public void removeClient(Client client) {
 		int col = GridPane.getColumnIndex(client);
+		waitingQueue.getChildren().remove(client);	
 		tabIndexUsedByClientWaiting[col] = false;// on indique dans le tableau que la case du gridPane est maintenant disponible
-		
-		waitingQueue.getChildren().remove(client);
 	}
 	
 	/**

@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import structure.*;
 
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import static structure.Rules.*;
 
@@ -82,18 +83,7 @@ public class MainViewController {
 		vomitVBox.getChildren().add(vomitBar.getProgressHolder());
 		angryVBox.getChildren().add(angryBar.getProgressHolder());
 		
-		// on ajoute autant de colonne au gridPane qu'il peut y avoir de clients dans la file d'attente
-		for (int i = 0; i < NB_MAX_CLIENTS; i++) {
-			ColumnConstraints columnConstraints = new ColumnConstraints(100); // crée une colonne
-			columnConstraints.setHalignment(HPos.CENTER); // centre le contenu de la colonne
-			columnConstraints.setMinWidth(100);
-			columnConstraints.setFillWidth(true);
-			Label label = new Label(String.valueOf(i + 1)); // ajoute un label contenant le numéro de sélection de la case
-			waitingQueue.add(label, i, 0); // ajoute le label à la case du gridPane
-			waitingQueue.getColumnConstraints().add(columnConstraints); // ajoute la nouvelle colonne au gridPane
-		}
-		waitingQueue.getRowConstraints().add(new RowConstraints(20)); // ajoute une première ligne au gridPane
-		waitingQueue.getRowConstraints().add(new RowConstraints(140)); // ajoute une 2ème ligne au gridPane
+		initWaitingQueue();
 	}
 	
 	/**
@@ -425,6 +415,12 @@ public class MainViewController {
 		stopGame();
 		waitingQueue.getChildren().clear();
 		
+		try {
+			TimeUnit.MILLISECONDS.sleep(250);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		// Ouvre une boite de dialogue annonçant la fin de la partie
 		Alert alert = new Alert(Alert.AlertType.NONE);
 		alert.setTitle("BurgerBuilder");
@@ -441,9 +437,10 @@ public class MainViewController {
 		ButtonType buttonTypeOne = new ButtonType("Rejouer"); // ajoute un bouton "Rejouer" à la boite de dialogue
 		alert.getButtonTypes().add(buttonTypeOne);
 		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == buttonTypeOne) {
+		if (result.isPresent() && result.get() == buttonTypeOne) {
 			vomitBar.reset();
 			angryBar.reset();
+			resetWaitingQueue();
 			resetBurgerBuilder();
 			resetMenuView();
 			startGame(); // démarre le jeu lorsqu'on clique sur le bouton de la boite de dialogue
@@ -526,6 +523,30 @@ public class MainViewController {
 		
 		builderVBox.getChildren().add(imv);
 		imv.toBack();
+	}
+	
+	private void initWaitingQueue() {
+		// on ajoute autant de colonne au gridPane qu'il peut y avoir de clients dans la file d'attente
+		for (int i = 0; i < NB_MAX_CLIENTS; i++) {
+			ColumnConstraints columnConstraints = new ColumnConstraints(100); // crée une colonne
+			columnConstraints.setHalignment(HPos.CENTER); // centre le contenu de la colonne
+			columnConstraints.setMinWidth(100);
+			columnConstraints.setFillWidth(true);
+			Label label = new Label(String.valueOf(i + 1)); // ajoute un label contenant le numéro de sélection de la case
+			waitingQueue.add(label, i, 0); // ajoute le label à la case du gridPane
+			waitingQueue.getColumnConstraints().add(columnConstraints); // ajoute la nouvelle colonne au gridPane
+		}
+		waitingQueue.getRowConstraints().add(new RowConstraints(20)); // ajoute une première ligne au gridPane
+		waitingQueue.getRowConstraints().add(new RowConstraints(140)); // ajoute une 2ème ligne au gridPane
+	}
+	
+	private void resetWaitingQueue() {
+		waitingQueue.getChildren().clear(); // supprime tout les enfants de la waitingQueue
+		
+		for (int i = 0; i < NB_MAX_CLIENTS; i++) {
+			Label label = new Label(String.valueOf(i + 1)); // ajoute un label contenant le numéro de sélection de la case
+			waitingQueue.add(label, i, 0); // ajoute le label à la case du gridPane
+		}
 	}
 	
 	/**

@@ -195,7 +195,7 @@ public class ClientsManager {
 	}
 	
 	/**
-	 * Arrête le timer du clientManager ainsi que ceux de tout les clients de la file d'attente.
+	 * Arrête le timer du clientManager ainsi que ceux de tous les clients de la file d'attente.
 	 */
 	public void stopTimers() {
 		gameIsRunning = false;

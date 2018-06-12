@@ -47,9 +47,10 @@ public abstract class BurgerBuilder {
 	 * Retourne true si le burger en construction dans le builder contient exactement les mêmes condiments (et dans le même ordre) que le burger
 	 * exemple du menu, false sinon.
 	 *
-	 * @return
+	 * @return true si le burger en construction dans le builder contient exactement les mêmes condiments (et dans le même ordre) que le burger
+	 * exemple du menu, false sinon.
 	 */
-	protected boolean check() {
+	private boolean check() {
 		return condimentsBurgerMenu.equals(condiments);
 	}
 	
@@ -72,6 +73,7 @@ public abstract class BurgerBuilder {
 	
 	/**
 	 * Retourne true si le burger actuellement en construction est vide, false sinon.
+	 *
 	 * @return true si le burger actuellement en construction est vide, false sinon.
 	 */
 	public boolean burgerIsEmpty() {

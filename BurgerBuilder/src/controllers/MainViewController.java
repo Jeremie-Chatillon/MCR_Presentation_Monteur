@@ -281,7 +281,7 @@ public class MainViewController {
 			} catch (IllegalArgumentException e) {
 				aClientVomitedAndLeave(); // on a livré le mauvais burger au client -> il vomit
 			} finally {
-				resetBurgerBuilder();
+				resetBurgerBuilder(); // on réinitialise le builder
 				resetMenuView();
 			}
 		}

@@ -551,9 +551,9 @@ public class MainViewController {
 	private void initWaitingQueue() {
 		// on ajoute autant de colonne au gridPane qu'il peut y avoir de clients dans la file d'attente
 		for (int i = 0; i < NB_MAX_CLIENTS; i++) {
-			ColumnConstraints columnConstraints = new ColumnConstraints(100); // crée une colonne
+			ColumnConstraints columnConstraints = new ColumnConstraints(120); // crée une colonne
 			columnConstraints.setHalignment(HPos.CENTER); // centre le contenu de la colonne
-			columnConstraints.setMinWidth(100);
+			columnConstraints.setMinWidth(120);
 			columnConstraints.setFillWidth(true);
 			Label label = new Label(String.valueOf(i + 1)); // ajoute un label contenant le numéro de sélection de la case
 			waitingQueue.add(label, i, 0); // ajoute le label à la case du gridPane

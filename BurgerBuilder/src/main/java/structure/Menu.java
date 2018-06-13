@@ -36,7 +36,7 @@ public class Menu {
 	 *
 	 * @param burgerBuilder, le builder concret qui sera utilisé pour construire se menu.
 	 */
-	public Menu(String name, BurgerBuilder burgerBuilder) {
+	private Menu(String name, BurgerBuilder burgerBuilder) {
 		this.name = name + " Burger";
 		this.builder = burgerBuilder;
 		burger = builder.createBurger(); // le burger est construit à l'aide du burgerBuilder
